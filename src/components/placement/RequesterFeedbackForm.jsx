@@ -293,7 +293,7 @@ const RequesterFeedbackForm = () => {
           fontSize: '12px',
           color: '#9ca3af'
         }}>
-          Designed with ❤️ by Placement Team
+          Designed with ❤️ by Alumni Network
         </div>
       </div>
     </div>
