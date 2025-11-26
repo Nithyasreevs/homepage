@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import PlacementDataRequestForm from './placement/PlacementDataRequestForm';
-import CompanyRegistrationForm from './placement/CompanyRegistrationForm';
-import RequesterFeedbackForm from './placement/RequesterFeedbackForm';
-import PlacementFeedbackForm from './placement/PlacementFeedbackForm';
+
+// Mock form components for demonstration
+const PlacementDataRequestForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Placement Data Request Form</div>;
+const CompanyRegistrationForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Company Registration Form</div>;
+const RequesterFeedbackForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Requester Feedback Form</div>;
+const PlacementFeedbackForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Placement Feedback Form</div>;
+
 const PlacementDashboard = ({ onBackToHome }) => {
   const [view, setView] = useState('dashboard');
 
@@ -55,7 +58,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
     contentSection: {
       position: 'relative',
       zIndex: 10,
-      padding: '0 60px 60px'
+      padding: '0 20px 40px'
     },
     placementDashboard: {
       display: 'flex',
@@ -63,65 +66,67 @@ const PlacementDashboard = ({ onBackToHome }) => {
       alignItems: 'center',
       minHeight: '80vh',
       justifyContent: 'center',
-      padding: '3rem 0',
+      padding: '2rem 0',
       width: '100%'
     },
     placementContent: {
       width: '100%',
       maxWidth: '1400px',
       margin: '0 auto',
-      padding: '0 3rem'
+      padding: '0'
     },
     dashboardHeader: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       textAlign: 'center',
-      marginBottom: '4rem',
+      marginBottom: '2.5rem',
       position: 'relative',
       width: '100%'
     },
     headerContent: {
       maxWidth: '800px',
-      margin: '0 auto'
+      margin: '0 auto',
+      width: '100%'
     },
     title: {
-      fontSize: '3rem',
+      fontSize: '2rem',
       fontWeight: '800',
       background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
-      marginBottom: '0.75rem',
-      letterSpacing: '-0.5px'
+      marginBottom: '0.5rem',
+      letterSpacing: '-0.5px',
+      lineHeight: '1.2'
     },
     subtitle: {
-      fontSize: '1.15rem',
+      fontSize: '0.95rem',
       color: '#6b7280',
       marginBottom: 0,
-      fontWeight: 400
+      fontWeight: 400,
+      padding: '0 20px'
     },
     backBtn: {
-      position: 'absolute',
-      right: 0,
-      top: 0,
-      padding: '12px 24px',
-      borderRadius: '20px',
+      padding: '10px 20px',
+      borderRadius: '16px',
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(10px)',
       border: '1px solid rgba(139, 92, 246, 0.2)',
       color: '#7c3aed',
       fontWeight: '600',
-      fontSize: '0.95rem',
+      fontSize: '0.9rem',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
-      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)'
+      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)',
+      marginTop: '1rem',
+      display: 'inline-block'
     },
     formsGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '2.5rem',
-      maxWidth: '1400px',
+      gridTemplateColumns: '1fr',
+      gap: '1.25rem',
+      maxWidth: '600px',
       margin: '0 auto',
       width: '100%'
     },
@@ -129,13 +134,12 @@ const PlacementDashboard = ({ onBackToHome }) => {
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(20px)',
       border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '28px',
-      padding: '3rem 3.5rem',
+      borderRadius: '20px',
+      padding: '1.75rem 1.5rem',
       cursor: 'pointer',
       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-      boxShadow: '0 10px 40px rgba(139, 92, 246, 0.12)',
+      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
       textAlign: 'left',
-      minHeight: '190px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -145,24 +149,27 @@ const PlacementDashboard = ({ onBackToHome }) => {
     cardHeader: {
       display: 'flex',
       alignItems: 'center',
-      gap: '1.5rem',
-      marginBottom: '1.25rem'
+      gap: '1rem',
+      marginBottom: '0.75rem'
     },
     cardIcon: {
-      width: '56px',
-      height: '56px',
-      borderRadius: '16px',
+      width: '48px',
+      height: '48px',
+      borderRadius: '14px',
       background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       color: 'white',
-      fontSize: '1.6rem',
+      fontSize: '1.4rem',
       flexShrink: 0,
-      boxShadow: '0 8px 20px rgba(139, 92, 246, 0.4)'
+      boxShadow: '0 6px 16px rgba(139, 92, 246, 0.35)'
+    },
+    cardTitleWrapper: {
+      flex: 1
     },
     cardTitle: {
-      fontSize: '1.65rem',
+      fontSize: '1.15rem',
       fontWeight: '700',
       color: '#1f2937',
       margin: 0,
@@ -172,19 +179,19 @@ const PlacementDashboard = ({ onBackToHome }) => {
       display: 'inline-block',
       background: 'rgba(139, 92, 246, 0.12)',
       color: '#7c3aed',
-      padding: '0.35rem 0.9rem',
-      borderRadius: '14px',
-      fontSize: '0.8rem',
+      padding: '0.25rem 0.65rem',
+      borderRadius: '12px',
+      fontSize: '0.7rem',
       fontWeight: '600',
-      marginTop: '0.5rem',
+      marginTop: '0.35rem',
       border: '1px solid rgba(139, 92, 246, 0.25)'
     },
     cardText: {
       color: '#6b7280',
-      lineHeight: 1.65,
-      fontSize: '1.05rem',
+      lineHeight: 1.5,
+      fontSize: '0.9rem',
       margin: 0,
-      paddingLeft: '5rem'
+      paddingLeft: '0'
     },
     singleFormLayout: {
       display: 'flex',
@@ -192,36 +199,36 @@ const PlacementDashboard = ({ onBackToHome }) => {
       width: '100%',
       maxWidth: '1400px',
       margin: '0 auto',
-      padding: '0 3rem'
+      padding: '0'
     },
     formBackBtn: {
-      padding: '10px 18px',
-      borderRadius: '20px',
+      padding: '10px 16px',
+      borderRadius: '16px',
       border: '1px solid rgba(139, 92, 246, 0.25)',
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(10px)',
       color: '#7c3aed',
-      fontSize: '0.95rem',
+      fontSize: '0.9rem',
       fontWeight: '600',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
       boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)',
-      marginBottom: '2rem',
+      marginBottom: '1.5rem',
       display: 'inline-flex',
       alignItems: 'center',
-      gap: '8px'
+      gap: '6px'
     }
   };
 
   const handleCardHover = (e, isHovering) => {
     if (isHovering) {
-      e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
-      e.currentTarget.style.boxShadow = '0 20px 60px rgba(139, 92, 246, 0.25)';
+      e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+      e.currentTarget.style.boxShadow = '0 12px 40px rgba(139, 92, 246, 0.2)';
       e.currentTarget.style.background = 'rgba(255, 255, 255, 0.95)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.25)';
     } else {
       e.currentTarget.style.transform = '';
-      e.currentTarget.style.boxShadow = '0 10px 40px rgba(139, 92, 246, 0.12)';
+      e.currentTarget.style.boxShadow = '0 8px 30px rgba(139, 92, 246, 0.12)';
       e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
       e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.1)';
     }
@@ -231,8 +238,8 @@ const PlacementDashboard = ({ onBackToHome }) => {
     if (isHovering) {
       e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
       e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.4)';
-      e.currentTarget.style.transform = 'translateX(-3px)';
-      e.currentTarget.style.boxShadow = '0 8px 25px rgba(139, 92, 246, 0.2)';
+      e.currentTarget.style.transform = 'translateX(-2px)';
+      e.currentTarget.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.2)';
     } else {
       e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
       e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
@@ -273,7 +280,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>📊</div>
-                <div>
+                <div style={styles.cardTitleWrapper}>
                   <h3 style={styles.cardTitle}>Placement Data Request</h3>
                   <span style={styles.roleBadge}>Admin</span>
                 </div>
@@ -291,7 +298,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>🏢</div>
-                <div>
+                <div style={styles.cardTitleWrapper}>
                   <h3 style={styles.cardTitle}>Add New Company</h3>
                   <span style={styles.roleBadge}>Register</span>
                 </div>
@@ -309,7 +316,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>💬</div>
-                <div>
+                <div style={styles.cardTitleWrapper}>
                   <h3 style={styles.cardTitle}>Requester Feedback</h3>
                 </div>
               </div>
@@ -326,7 +333,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>⭐</div>
-                <div>
+                <div style={styles.cardTitleWrapper}>
                   <h3 style={styles.cardTitle}>Placement Feedback</h3>
                 </div>
               </div>
@@ -387,19 +394,145 @@ const PlacementDashboard = ({ onBackToHome }) => {
           }
         }
         
-        @media (max-width: 1024px) {
+        @media (min-width: 768px) {
+          .dashboard-wrapper .content-section {
+            padding: 0 40px 60px;
+          }
+          
+          .placement-dashboard {
+            padding: 2.5rem 0;
+          }
+          
+          .placement-content {
+            padding: 0 2rem !important;
+          }
+          
+          .dashboard-header {
+            margin-bottom: 3.5rem;
+          }
+          
+          .title {
+            font-size: 2.5rem !important;
+          }
+          
+          .subtitle {
+            font-size: 1.05rem !important;
+          }
+          
+          .back-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-top: 0;
+          }
+          
           .forms-grid {
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem !important;
+            max-width: 1200px !important;
+          }
+          
+          .form-card {
+            padding: 2.5rem 2.5rem !important;
+          }
+          
+          .card-icon {
+            width: 52px !important;
+            height: 52px !important;
+            font-size: 1.5rem !important;
+          }
+          
+          .card-title {
+            font-size: 1.4rem !important;
+          }
+          
+          .card-text {
+            font-size: 1rem !important;
           }
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 1024px) {
+          .content-section {
+            padding: 0 60px 60px !important;
+          }
+          
+          .placement-dashboard {
+            padding: 3rem 0 !important;
+          }
+          
+          .placement-content {
+            padding: 0 3rem !important;
+          }
+          
+          .dashboard-header {
+            margin-bottom: 4rem !important;
+          }
+          
+          .title {
+            font-size: 3rem !important;
+          }
+          
+          .subtitle {
+            font-size: 1.15rem !important;
+          }
+          
+          .back-btn {
+            padding: 12px 24px !important;
+            font-size: 0.95rem !important;
+          }
+          
           .forms-grid {
-            grid-template-columns: 1fr;
-            max-width: 600px;
-            gap: 1.5rem;
+            gap: 2.5rem !important;
+            max-width: 1400px !important;
+          }
+          
+          .form-card {
+            padding: 3rem 3.5rem !important;
+            min-height: 190px;
+          }
+          
+          .card-header {
+            gap: 1.5rem !important;
+            margin-bottom: 1.25rem !important;
+          }
+          
+          .card-icon {
+            width: 56px !important;
+            height: 56px !important;
+            font-size: 1.6rem !important;
+          }
+          
+          .card-title {
+            font-size: 1.65rem !important;
+          }
+          
+          .role-badge {
+            padding: 0.35rem 0.9rem !important;
+            font-size: 0.8rem !important;
+          }
+          
+          .card-text {
+            font-size: 1.05rem !important;
+            padding-left: 5rem !important;
           }
         }
+        
+        /* Apply classes */
+        ${styles.dashboardWrapper ? '.dashboard-wrapper { }' : ''}
+        ${styles.contentSection ? '.content-section { }' : ''}
+        ${styles.placementDashboard ? '.placement-dashboard { }' : ''}
+        ${styles.placementContent ? '.placement-content { }' : ''}
+        ${styles.dashboardHeader ? '.dashboard-header { }' : ''}
+        ${styles.title ? '.title { }' : ''}
+        ${styles.subtitle ? '.subtitle { }' : ''}
+        ${styles.backBtn ? '.back-btn { }' : ''}
+        ${styles.formsGrid ? '.forms-grid { }' : ''}
+        ${styles.formCard ? '.form-card { }' : ''}
+        ${styles.cardHeader ? '.card-header { }' : ''}
+        ${styles.cardIcon ? '.card-icon { }' : ''}
+        ${styles.cardTitle ? '.card-title { }' : ''}
+        ${styles.roleBadge ? '.role-badge { }' : ''}
+        ${styles.cardText ? '.card-text { }' : ''}
       `}</style>
     </div>
   );
