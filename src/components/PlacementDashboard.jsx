@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-
-// Mock form components for demonstration
-const PlacementDataRequestForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Placement Data Request Form</div>;
-const CompanyRegistrationForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Company Registration Form</div>;
-const RequesterFeedbackForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Requester Feedback Form</div>;
-const PlacementFeedbackForm = () => <div style={{padding: '20px', background: 'white', borderRadius: '16px'}}>Placement Feedback Form</div>;
+import PlacementDataRequestForm from './placement/PlacementDataRequestForm';
+import CompanyRegistrationForm from './placement/CompanyRegistrationForm';
+import RequesterFeedbackForm from './placement/RequesterFeedbackForm';
+import PlacementFeedbackForm from './placement/PlacementFeedbackForm';
 
 const PlacementDashboard = ({ onBackToHome }) => {
   const [view, setView] = useState('dashboard');
@@ -234,6 +232,16 @@ const PlacementDashboard = ({ onBackToHome }) => {
     }
   };
 
+  const handleCardTouch = (e, viewName) => {
+    e.currentTarget.style.transform = 'scale(0.98)';
+    e.currentTarget.style.transition = 'transform 0.1s';
+    setTimeout(() => {
+      e.currentTarget.style.transform = '';
+      e.currentTarget.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      setView(viewName);
+    }, 100);
+  };
+
   const handleBackBtnHover = (e, isHovering) => {
     if (isHovering) {
       e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
@@ -277,6 +285,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
               onClick={() => setView('dataRequest')}
               onMouseEnter={(e) => handleCardHover(e, true)}
               onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'dataRequest')}
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>📊</div>
@@ -295,6 +304,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
               onClick={() => setView('company')}
               onMouseEnter={(e) => handleCardHover(e, true)}
               onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'company')}
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>🏢</div>
@@ -313,6 +323,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
               onClick={() => setView('requesterFeedback')}
               onMouseEnter={(e) => handleCardHover(e, true)}
               onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'requesterFeedback')}
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>💬</div>
@@ -330,6 +341,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
               onClick={() => setView('placementFeedback')}
               onMouseEnter={(e) => handleCardHover(e, true)}
               onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'placementFeedback')}
             >
               <div style={styles.cardHeader}>
                 <div style={styles.cardIcon}>⭐</div>
@@ -516,23 +528,6 @@ const PlacementDashboard = ({ onBackToHome }) => {
             padding-left: 5rem !important;
           }
         }
-        
-        /* Apply classes */
-        ${styles.dashboardWrapper ? '.dashboard-wrapper { }' : ''}
-        ${styles.contentSection ? '.content-section { }' : ''}
-        ${styles.placementDashboard ? '.placement-dashboard { }' : ''}
-        ${styles.placementContent ? '.placement-content { }' : ''}
-        ${styles.dashboardHeader ? '.dashboard-header { }' : ''}
-        ${styles.title ? '.title { }' : ''}
-        ${styles.subtitle ? '.subtitle { }' : ''}
-        ${styles.backBtn ? '.back-btn { }' : ''}
-        ${styles.formsGrid ? '.forms-grid { }' : ''}
-        ${styles.formCard ? '.form-card { }' : ''}
-        ${styles.cardHeader ? '.card-header { }' : ''}
-        ${styles.cardIcon ? '.card-icon { }' : ''}
-        ${styles.cardTitle ? '.card-title { }' : ''}
-        ${styles.roleBadge ? '.role-badge { }' : ''}
-        ${styles.cardText ? '.card-text { }' : ''}
       `}</style>
     </div>
   );
