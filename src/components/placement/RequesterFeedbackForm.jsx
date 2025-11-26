@@ -12,55 +12,51 @@ const RequesterFeedbackForm = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      padding: '20px 16px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)'
+      padding: '40px 20px',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
       <div style={{
-        maxWidth: '600px',
+        maxWidth: '1000px',
         margin: '0 auto',
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(20px)',
-        borderRadius: '20px',
-        padding: '24px 20px',
+        borderRadius: '24px',
+        padding: '40px',
         border: '1px solid rgba(139, 92, 246, 0.15)',
-        boxShadow: '0 10px 40px rgba(139, 92, 246, 0.2)'
+        boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)'
       }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <div style={{
-            width: '60px',
-            height: '60px',
+            width: '70px',
+            height: '70px',
             background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-            borderRadius: '14px',
+            borderRadius: '15px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 16px',
-            fontSize: '30px',
-            boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)'
+            margin: '0 auto 20px',
+            fontSize: '35px',
+            boxShadow: '0 10px 28px rgba(139, 92, 246, 0.32)'
           }}>
             💬
           </div>
           <h2 style={{
-            fontSize: '22px',
+            fontSize: '28px',
             fontWeight: '700',
             background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            marginBottom: '6px',
-            lineHeight: '1.3'
+            marginBottom: '8px'
           }}>
             Requester Feedback
           </h2>
           <p style={{
             color: '#6b7280',
-            fontSize: '13px',
-            lineHeight: '1.5',
-            padding: '0 10px'
+            fontSize: '14px'
           }}>
-            Provide honest feedback to help the applicant grow
+            Please provide honest and constructive feedback to help the applicant grow
           </p>
         </div>
 
@@ -68,93 +64,94 @@ const RequesterFeedbackForm = () => {
         <div style={{
           height: '1px',
           background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-          margin: '20px 0'
+          margin: '30px 0'
         }}></div>
 
         <div>
           {/* Auto-filled Information Section */}
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
-              fontWeight: '600',
-              color: '#374151',
-              marginBottom: '6px'
-            }}>
-              <span style={{ fontSize: '16px' }}>📧</span>
-              Email ID <span style={{ color: '#ef4444' }}>*</span>
-            </label>
-            <input
-              type="email"
-              placeholder="Auto-filled after login"
-              disabled
-              style={{
-                width: '100%',
-                padding: '12px 14px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '10px',
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+            <div>
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
                 fontSize: '14px',
-                background: '#f9fafb',
-                color: '#9ca3af',
-                cursor: 'not-allowed',
-                boxSizing: 'border-box'
-              }}
-            />
+                fontWeight: '600',
+                color: '#374151',
+                marginBottom: '8px'
+              }}>
+                <span style={{ color: '#8b5cf6' }}>📧</span>
+                Email ID <span style={{ color: '#ef4444' }}>*</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Will be auto-filled after successful login"
+                disabled
+                style={{
+                  width: '100%',
+                  padding: '12px 15px',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '10px',
+                  fontSize: '14px',
+                  background: '#f9fafb',
+                  color: '#9ca3af',
+                  cursor: 'not-allowed',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+            <div>
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#374151',
+                marginBottom: '8px'
+              }}>
+                <span style={{ color: '#8b5cf6' }}>🆔</span>
+                Applicant ID <span style={{ color: '#ef4444' }}>*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Will be auto-filled after successful login"
+                disabled
+                style={{
+                  width: '100%',
+                  padding: '12px 15px',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '10px',
+                  fontSize: '14px',
+                  background: '#f9fafb',
+                  color: '#9ca3af',
+                  cursor: 'not-allowed',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
           </div>
 
-          <div style={{ marginBottom: '16px' }}>
+          <div style={{ marginBottom: '20px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
+              gap: '8px',
+              fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '6px'
+              marginBottom: '8px'
             }}>
-              <span style={{ fontSize: '16px' }}>🆔</span>
-              Applicant ID <span style={{ color: '#ef4444' }}>*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Auto-filled after login"
-              disabled
-              style={{
-                width: '100%',
-                padding: '12px 14px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '10px',
-                fontSize: '14px',
-                background: '#f9fafb',
-                color: '#9ca3af',
-                cursor: 'not-allowed',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
-
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
-              fontWeight: '600',
-              color: '#374151',
-              marginBottom: '6px'
-            }}>
-              <span style={{ fontSize: '16px' }}>🎓</span>
+              <span style={{ color: '#8b5cf6' }}>🎓</span>
               Batch <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
               type="text"
-              placeholder="Auto-filled after login"
+              placeholder="Will be auto-filled after successful login"
               disabled
               style={{
                 width: '100%',
-                padding: '12px 14px',
+                padding: '12px 15px',
                 border: '1px solid #e5e7eb',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -170,29 +167,29 @@ const RequesterFeedbackForm = () => {
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '20px 0'
+            margin: '30px 0'
           }}></div>
 
-          <div style={{ marginBottom: '16px' }}>
+          <div style={{ marginBottom: '20px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
+              gap: '8px',
+              fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '6px'
+              marginBottom: '8px'
             }}>
-              <span style={{ fontSize: '16px' }}>👤</span>
+              <span style={{ color: '#8b5cf6' }}>👤</span>
               Applicant Name <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
               type="text"
-              placeholder="Auto-filled after login"
+              placeholder="Will be auto-filled after successful login"
               disabled
               style={{
                 width: '100%',
-                padding: '12px 14px',
+                padding: '12px 15px',
                 border: '1px solid #e5e7eb',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -208,31 +205,31 @@ const RequesterFeedbackForm = () => {
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '20px 0'
+            margin: '30px 0'
           }}></div>
 
           {/* Feedback Section */}
-          <div style={{ marginBottom: '16px' }}>
+          <div style={{ marginBottom: '20px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
+              gap: '8px',
+              fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '6px'
+              marginBottom: '8px'
             }}>
-              <span style={{ fontSize: '16px' }}>💭</span>
+              <span style={{ color: '#8b5cf6' }}>💭</span>
               Feedback <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <textarea
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
-              placeholder="Share your detailed feedback here. Include strengths, areas for improvement, and recommendations..."
-              rows="8"
+              placeholder="Write your detailed feedback here. Include strengths, areas for improvement, and recommendations..."
+              rows="6"
               style={{
                 width: '100%',
-                padding: '12px 14px',
+                padding: '12px 15px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -240,8 +237,7 @@ const RequesterFeedbackForm = () => {
                 resize: 'vertical',
                 fontFamily: 'inherit',
                 transition: 'border-color 0.2s',
-                boxSizing: 'border-box',
-                lineHeight: '1.5'
+                boxSizing: 'border-box'
               }}
               onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
               onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
@@ -249,11 +245,11 @@ const RequesterFeedbackForm = () => {
             <p style={{
               fontSize: '12px',
               color: '#6b7280',
-              marginTop: '6px',
+              marginTop: '8px',
               fontStyle: 'italic',
               lineHeight: '1.5'
             }}>
-              Cover technical skills, communication, problem-solving, and overall impression.
+              Provide constructive feedback covering technical skills, communication, problem-solving abilities, and overall impression.
             </p>
           </div>
 
@@ -261,7 +257,7 @@ const RequesterFeedbackForm = () => {
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '20px 0'
+            margin: '30px 0'
           }}></div>
 
           <button
@@ -273,25 +269,18 @@ const RequesterFeedbackForm = () => {
               color: 'white',
               border: 'none',
               borderRadius: '10px',
-              fontSize: '15px',
+              fontSize: '16px',
               fontWeight: '600',
               cursor: 'pointer',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-              boxShadow: '0 4px 15px rgba(139, 92, 246, 0.3)'
+              transition: 'transform 0.2s, box-shadow 0.2s'
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-1px)';
-              e.target.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.4)';
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 10px 25px rgba(139, 92, 246, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 15px rgba(139, 92, 246, 0.3)';
-            }}
-            onTouchStart={(e) => {
-              e.target.style.transform = 'scale(0.98)';
-            }}
-            onTouchEnd={(e) => {
-              e.target.style.transform = 'scale(1)';
+              e.target.style.boxShadow = 'none';
             }}
           >
             Submit Feedback
@@ -300,8 +289,8 @@ const RequesterFeedbackForm = () => {
 
         <div style={{
           textAlign: 'center',
-          marginTop: '20px',
-          fontSize: '11px',
+          marginTop: '25px',
+          fontSize: '12px',
           color: '#9ca3af'
         }}>
           Designed with ❤️ by Alumni Network
