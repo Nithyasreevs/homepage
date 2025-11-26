@@ -29,76 +29,80 @@ const PlacementDataRequestForm = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      padding: '40px 20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      padding: '20px 15px',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      background: '#f8fafc'
     }}>
       <div style={{
         maxWidth: '1000px',
         margin: '0 auto',
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(20px)',
-        borderRadius: '24px',
-        padding: '40px',
+        borderRadius: '20px',
+        padding: '25px 20px',
         border: '1px solid rgba(139, 92, 246, 0.15)',
-        boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)'
+        boxShadow: '0 10px 40px rgba(139, 92, 246, 0.2)'
       }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '25px' }}>
           <div style={{
-            width: '70px',
-            height: '70px',
+            width: '60px',
+            height: '60px',
             background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-            borderRadius: '15px',
+            borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 20px',
-            fontSize: '35px',
-            boxShadow: '0 10px 28px rgba(139, 92, 246, 0.32)'
+            margin: '0 auto 15px',
+            fontSize: '28px',
+            boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)'
           }}>
             📊
           </div>
           <h2 style={{
-            fontSize: '28px',
+            fontSize: '22px',
             fontWeight: '700',
             background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            marginBottom: '8px'
+            marginBottom: '6px',
+            lineHeight: '1.3'
           }}>
-            Placement Data Request Form
+            Placement Data Request
           </h2>
           <p style={{
             color: '#6b7280',
-            fontSize: '14px'
+            fontSize: '13px',
+            lineHeight: '1.4',
+            padding: '0 10px'
           }}>
             Please share your placement preferences
           </p>
         </div>
 
         <div>
-          {/* Auto-filled fields */}
+          {/* Auto-filled fields - Stacked for mobile */}
           <div style={{ marginBottom: '20px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>👤</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>👤</span>
               Name <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
               type="text"
-              placeholder="Will be auto-filled after successful login"
+              placeholder="Auto-filled after login"
               disabled
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #e5e7eb',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -114,22 +118,22 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>📧</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>📧</span>
               Personal Email ID <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
               type="email"
-              placeholder="Will be auto-filled after successful login"
+              placeholder="Auto-filled after login"
               disabled
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #e5e7eb',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -141,27 +145,33 @@ const PlacementDataRequestForm = () => {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+          {/* Contact and Batch - Stack on mobile */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr', 
+            gap: '15px', 
+            marginBottom: '20px'
+          }}>
             <div>
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
+                gap: '6px',
+                fontSize: '13px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
-                <span style={{ color: '#8b5cf6' }}>📱</span>
+                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>📱</span>
                 Contact No <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
                 type="tel"
-                placeholder="Will be auto-filled after successful login"
+                placeholder="Auto-filled after login"
                 disabled
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '14px 12px',
                   border: '1px solid #e5e7eb',
                   borderRadius: '10px',
                   fontSize: '14px',
@@ -176,22 +186,22 @@ const PlacementDataRequestForm = () => {
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
+                gap: '6px',
+                fontSize: '13px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
-                <span style={{ color: '#8b5cf6' }}>🎓</span>
+                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🎓</span>
                 Batch <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
                 type="text"
-                placeholder="Will be auto-filled after successful login"
+                placeholder="Auto-filled after login"
                 disabled
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '14px 12px',
                   border: '1px solid #e5e7eb',
                   borderRadius: '10px',
                   fontSize: '14px',
@@ -209,13 +219,13 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>📍</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>📍</span>
               Preferred Location <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
@@ -226,7 +236,7 @@ const PlacementDataRequestForm = () => {
               placeholder="City or Country"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -243,13 +253,13 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>🎯</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🎯</span>
               Skillset <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
@@ -260,7 +270,7 @@ const PlacementDataRequestForm = () => {
               placeholder="Enter your skills"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -277,13 +287,13 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>🏢</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🏢</span>
               Current Company <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
@@ -294,7 +304,7 @@ const PlacementDataRequestForm = () => {
               placeholder="Enter your company"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -307,18 +317,24 @@ const PlacementDataRequestForm = () => {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+          {/* Experience and CTC - Stack on mobile */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr', 
+            gap: '15px', 
+            marginBottom: '20px'
+          }}>
             <div>
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
+                gap: '6px',
+                fontSize: '13px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
-                <span style={{ color: '#8b5cf6' }}>⏱️</span>
+                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>⏱️</span>
                 Years of Experience <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
@@ -329,7 +345,7 @@ const PlacementDataRequestForm = () => {
                 placeholder="Years of experience"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '14px 12px',
                   border: '1px solid #d1d5db',
                   borderRadius: '10px',
                   fontSize: '14px',
@@ -345,13 +361,13 @@ const PlacementDataRequestForm = () => {
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
+                gap: '6px',
+                fontSize: '13px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
-                <span style={{ color: '#8b5cf6' }}>💰</span>
+                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>💰</span>
                 Current CTC <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
@@ -362,7 +378,7 @@ const PlacementDataRequestForm = () => {
                 placeholder="Current CTC"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '14px 12px',
                   border: '1px solid #d1d5db',
                   borderRadius: '10px',
                   fontSize: '14px',
@@ -380,13 +396,13 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>💬</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>💬</span>
               Message <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <textarea
@@ -397,7 +413,7 @@ const PlacementDataRequestForm = () => {
               rows="4"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -405,7 +421,8 @@ const PlacementDataRequestForm = () => {
                 resize: 'vertical',
                 fontFamily: 'inherit',
                 transition: 'border-color 0.2s',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                minHeight: '120px'
               }}
               onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
               onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
@@ -416,13 +433,13 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>📎</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>📎</span>
               Attachment <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
@@ -431,19 +448,21 @@ const PlacementDataRequestForm = () => {
               accept=".pdf,.doc,.docx"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
                 cursor: 'pointer',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                background: 'white'
               }}
             />
             <p style={{
-              fontSize: '12px',
+              fontSize: '11px',
               color: '#6b7280',
               marginTop: '6px',
-              marginLeft: '4px'
+              marginLeft: '2px',
+              lineHeight: '1.4'
             }}>
               Upload your resume (PDF, DOC, DOCX)
             </p>
@@ -453,7 +472,7 @@ const PlacementDataRequestForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              gap: '8px',
               cursor: 'pointer',
               fontSize: '13px',
               color: '#4b5563'
@@ -475,7 +494,7 @@ const PlacementDataRequestForm = () => {
             onClick={handleSubmit}
             style={{
               width: '100%',
-              padding: '14px',
+              padding: '16px',
               background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
               color: 'white',
               border: 'none',
@@ -487,9 +506,17 @@ const PlacementDataRequestForm = () => {
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 10px 25px rgba(139, 92, 246, 0.4)';
+              e.target.style.boxShadow = '0 8px 20px rgba(139, 92, 246, 0.4)';
             }}
             onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'translateY(-1px)';
+              e.target.style.boxShadow = '0 6px 15px rgba(139, 92, 246, 0.4)';
+            }}
+            onTouchEnd={(e) => {
               e.target.style.transform = 'translateY(0)';
               e.target.style.boxShadow = 'none';
             }}
@@ -500,9 +527,10 @@ const PlacementDataRequestForm = () => {
 
         <div style={{
           textAlign: 'center',
-          marginTop: '25px',
-          fontSize: '12px',
-          color: '#9ca3af'
+          marginTop: '20px',
+          fontSize: '11px',
+          color: '#9ca3af',
+          padding: '0 10px'
         }}>
           Designed with ❤️ by Alumni Network
         </div>

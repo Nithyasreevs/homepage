@@ -12,49 +12,53 @@ const RequesterFeedbackForm = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      padding: '40px 20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      padding: '20px 15px',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      background: '#f8fafc'
     }}>
       <div style={{
         maxWidth: '1000px',
         margin: '0 auto',
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(20px)',
-        borderRadius: '24px',
-        padding: '40px',
+        borderRadius: '20px',
+        padding: '25px 20px',
         border: '1px solid rgba(139, 92, 246, 0.15)',
-        boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)'
+        boxShadow: '0 10px 40px rgba(139, 92, 246, 0.2)'
       }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '25px' }}>
           <div style={{
-            width: '70px',
-            height: '70px',
+            width: '60px',
+            height: '60px',
             background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-            borderRadius: '15px',
+            borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 20px',
-            fontSize: '35px',
-            boxShadow: '0 10px 28px rgba(139, 92, 246, 0.32)'
+            margin: '0 auto 15px',
+            fontSize: '28px',
+            boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)'
           }}>
             💬
           </div>
           <h2 style={{
-            fontSize: '28px',
+            fontSize: '22px',
             fontWeight: '700',
             background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            marginBottom: '8px'
+            marginBottom: '6px',
+            lineHeight: '1.3'
           }}>
             Requester Feedback
           </h2>
           <p style={{
             color: '#6b7280',
-            fontSize: '14px'
+            fontSize: '13px',
+            lineHeight: '1.4',
+            padding: '0 10px'
           }}>
             Please provide honest and constructive feedback to help the applicant grow
           </p>
@@ -64,32 +68,37 @@ const RequesterFeedbackForm = () => {
         <div style={{
           height: '1px',
           background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-          margin: '30px 0'
+          margin: '25px 0'
         }}></div>
 
         <div>
-          {/* Auto-filled Information Section */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+          {/* Auto-filled Information Section - Stack on mobile */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr', 
+            gap: '15px', 
+            marginBottom: '20px'
+          }}>
             <div>
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
+                gap: '6px',
+                fontSize: '13px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
-                <span style={{ color: '#8b5cf6' }}>📧</span>
+                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>📧</span>
                 Email ID <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
                 type="email"
-                placeholder="Will be auto-filled after successful login"
+                placeholder="Auto-filled after login"
                 disabled
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '14px 12px',
                   border: '1px solid #e5e7eb',
                   borderRadius: '10px',
                   fontSize: '14px',
@@ -104,22 +113,22 @@ const RequesterFeedbackForm = () => {
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
+                gap: '6px',
+                fontSize: '13px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
-                <span style={{ color: '#8b5cf6' }}>🆔</span>
+                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🆔</span>
                 Applicant ID <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
                 type="text"
-                placeholder="Will be auto-filled after successful login"
+                placeholder="Auto-filled after login"
                 disabled
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '14px 12px',
                   border: '1px solid #e5e7eb',
                   borderRadius: '10px',
                   fontSize: '14px',
@@ -136,22 +145,22 @@ const RequesterFeedbackForm = () => {
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>🎓</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🎓</span>
               Batch <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
               type="text"
-              placeholder="Will be auto-filled after successful login"
+              placeholder="Auto-filled after login"
               disabled
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #e5e7eb',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -167,29 +176,29 @@ const RequesterFeedbackForm = () => {
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '30px 0'
+            margin: '25px 0'
           }}></div>
 
           <div style={{ marginBottom: '20px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>👤</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>👤</span>
               Applicant Name <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <input
               type="text"
-              placeholder="Will be auto-filled after successful login"
+              placeholder="Auto-filled after login"
               disabled
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #e5e7eb',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -205,21 +214,21 @@ const RequesterFeedbackForm = () => {
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '30px 0'
+            margin: '25px 0'
           }}></div>
 
           {/* Feedback Section */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '25px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '14px',
+              gap: '6px',
+              fontSize: '13px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
-              <span style={{ color: '#8b5cf6' }}>💭</span>
+              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>💭</span>
               Feedback <span style={{ color: '#ef4444' }}>*</span>
             </label>
             <textarea
@@ -229,7 +238,7 @@ const RequesterFeedbackForm = () => {
               rows="6"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '14px 12px',
                 border: '1px solid #d1d5db',
                 borderRadius: '10px',
                 fontSize: '14px',
@@ -237,17 +246,18 @@ const RequesterFeedbackForm = () => {
                 resize: 'vertical',
                 fontFamily: 'inherit',
                 transition: 'border-color 0.2s',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                minHeight: '120px'
               }}
               onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
               onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
             />
             <p style={{
-              fontSize: '12px',
+              fontSize: '11px',
               color: '#6b7280',
               marginTop: '8px',
               fontStyle: 'italic',
-              lineHeight: '1.5'
+              lineHeight: '1.4'
             }}>
               Provide constructive feedback covering technical skills, communication, problem-solving abilities, and overall impression.
             </p>
@@ -257,14 +267,14 @@ const RequesterFeedbackForm = () => {
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '30px 0'
+            margin: '25px 0'
           }}></div>
 
           <button
             onClick={handleSubmit}
             style={{
               width: '100%',
-              padding: '14px',
+              padding: '16px',
               background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
               color: 'white',
               border: 'none',
@@ -276,9 +286,17 @@ const RequesterFeedbackForm = () => {
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 10px 25px rgba(139, 92, 246, 0.4)';
+              e.target.style.boxShadow = '0 8px 20px rgba(139, 92, 246, 0.4)';
             }}
             onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'translateY(-1px)';
+              e.target.style.boxShadow = '0 6px 15px rgba(139, 92, 246, 0.4)';
+            }}
+            onTouchEnd={(e) => {
               e.target.style.transform = 'translateY(0)';
               e.target.style.boxShadow = 'none';
             }}
@@ -289,9 +307,10 @@ const RequesterFeedbackForm = () => {
 
         <div style={{
           textAlign: 'center',
-          marginTop: '25px',
-          fontSize: '12px',
-          color: '#9ca3af'
+          marginTop: '20px',
+          fontSize: '11px',
+          color: '#9ca3af',
+          padding: '0 10px'
         }}>
           Designed with ❤️ by Alumni Network
         </div>
