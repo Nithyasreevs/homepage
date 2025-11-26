@@ -9,7 +9,7 @@
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
-  background-color: #f8f9ff; /* Light purple background */
+  background-color: #f8f9ff;
 }
 
 /* Animated Background */
@@ -277,7 +277,7 @@ body {
 }
 
 .status-approved {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%);
   color: white;
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
@@ -468,6 +468,18 @@ body {
 .glass-card:hover .view-more {
   color: #6d28d9;
   transform: translateX(5px);
+}
+
+.dashboard-link-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dashboard-link-text {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #6b7280;
 }
 
 /* Modal */

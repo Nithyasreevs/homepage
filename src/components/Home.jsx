@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Home.css';
 
-const AlumniDashboard = () => {
+const AlumniDashboard = ({ onOpenPlacementDashboard }) => {
   const [selectedTab, setSelectedTab] = useState('webinars');
   const [selectedItem, setSelectedItem] = useState(null);
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -331,130 +331,155 @@ const AlumniDashboard = () => {
       </nav>
 
       <main className="content-section">
-        <div className="cards-container">
-          {selectedTab === 'webinars' && webinars.map(item => (
-            <div 
-              key={item.id}
-              className={`glass-card ${hoveredCard === item.id ? 'hovered' : ''}`}
-              onClick={() => setSelectedItem(item)}
-              onMouseEnter={() => setHoveredCard(item.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <div className="card-header">
-                <h3>{item.title}</h3>
-                <span className={`status-pill ${getStatusClass(item.status)}`}>
-                  {getStatusIcon(item.status)} {item.status}
-                </span>
-              </div>
-              <div className="card-stats">
-                <div className="stat-item">
-                  <span className="stat-icon">✅</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Conducted</span>
-                    <span className="stat-value">{item.conducted}</span>
+        {selectedTab === 'webinars' && (
+          <div className="cards-container">
+            {webinars.map(item => (
+              <div 
+                key={item.id}
+                className={`glass-card ${hoveredCard === item.id ? 'hovered' : ''}`}
+                onClick={() => setSelectedItem(item)}
+                onMouseEnter={() => setHoveredCard(item.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="card-header">
+                  <h3>{item.title}</h3>
+                  <span className={`status-pill ${getStatusClass(item.status)}`}>
+                    {getStatusIcon(item.status)} {item.status}
+                  </span>
+                </div>
+                <div className="card-stats">
+                  <div className="stat-item">
+                    <span className="stat-icon">✅</span>
+                    <div className="stat-info">
+                      <span className="stat-label">Conducted</span>
+                      <span className="stat-value">{item.conducted}</span>
+                    </div>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-icon">🎤</span>
+                    <div className="stat-info">
+                      <span className="stat-label">Speakers</span>
+                      <span className="stat-value">{item.speakers}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="stat-item">
-                  <span className="stat-icon">🎤</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Speakers</span>
-                    <span className="stat-value">{item.speakers}</span>
-                  </div>
+                <div className="card-footer">
+                  <span className="view-more">View Details →</span>
                 </div>
               </div>
-              <div className="card-footer">
-                <span className="view-more">View Details →</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        )}
 
-          {selectedTab === 'mentorships' && mentorships.map(item => (
-            <div 
-              key={item.id}
-              className={`glass-card ${hoveredCard === item.id ? 'hovered' : ''}`}
-              onClick={() => setSelectedItem(item)}
-              onMouseEnter={() => setHoveredCard(item.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <div className="card-header">
-                <div className="mentor-badge">
-                  <span className="badge-icon">👨‍🏫</span>
-                  <span className="badge-text">{item.mentor}</span>
+        {selectedTab === 'mentorships' && (
+          <div className="cards-container">
+            {mentorships.map(item => (
+              <div 
+                key={item.id}
+                className={`glass-card ${hoveredCard === item.id ? 'hovered' : ''}`}
+                onClick={() => setSelectedItem(item)}
+                onMouseEnter={() => setHoveredCard(item.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="card-header">
+                  <div className="mentor-badge">
+                    <span className="badge-icon">👨‍🏫</span>
+                    <span className="badge-text">{item.mentor}</span>
+                  </div>
+                  <span className={`status-pill ${getStatusClass(item.status)}`}>
+                    {getStatusIcon(item.status)} {item.status}
+                  </span>
                 </div>
-                <span className={`status-pill ${getStatusClass(item.status)}`}>
-                  {getStatusIcon(item.status)} {item.status}
-                </span>
-              </div>
-              <div className="mentee-section">
-                <span className="mentee-icon">👨‍🎓</span>
-                <span className="mentee-name">{item.mentee}</span>
-              </div>
-              <div className="card-stats">
-                <div className="stat-item">
-                  <span className="stat-icon">✅</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Meetings</span>
-                    <span className="stat-value">{item.meetings}</span>
+                <div className="mentee-section">
+                  <span className="mentee-icon">👨‍🎓</span>
+                  <span className="mentee-name">{item.mentee}</span>
+                </div>
+                <div className="card-stats">
+                  <div className="stat-item">
+                    <span className="stat-icon">✅</span>
+                    <div className="stat-info">
+                      <span className="stat-label">Meetings</span>
+                      <span className="stat-value">{item.meetings}</span>
+                    </div>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-icon">⏱</span>
+                    <div className="stat-info">
+                      <span className="stat-label">Duration</span>
+                      <span className="stat-value">{item.duration}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="stat-item">
-                  <span className="stat-icon">⏱</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Duration</span>
-                    <span className="stat-value">{item.duration}</span>
-                  </div>
+                <div className="card-footer">
+                  <span className="view-more">View Details →</span>
                 </div>
               </div>
-              <div className="card-footer">
-                <span className="view-more">View Details →</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        )}
 
-          {selectedTab === 'placements' && placements.map(item => (
+        {selectedTab === 'placements' && (
+          <div className="cards-container">
+            {placements.map(item => (
+              <div 
+                key={item.id}
+                className={`glass-card ${hoveredCard === item.id ? 'hovered' : ''}`}
+                onClick={() => setSelectedItem(item)}
+                onMouseEnter={() => setHoveredCard(item.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="card-header">
+                  <div className="alumni-info">
+                    <span className="alumni-icon">👤</span>
+                    <span className="alumni-name">{item.alumni}</span>
+                  </div>
+                  <span className={`status-pill ${getStatusClass(item.status)}`}>
+                    {getStatusIcon(item.status)} {item.status}
+                  </span>
+                </div>
+                <div className="company-section">
+                  <span className="company-icon">🏢</span>
+                  <span className="company-name">{item.company}</span>
+                </div>
+                <div className="position-section">{item.position}</div>
+                <div className="card-stats">
+                  <div className="stat-item">
+                    <span className="stat-icon">💰</span>
+                    <div className="stat-info">
+                      <span className="stat-label">Package</span>
+                      <span className="stat-value">{item.package}</span>
+                    </div>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-icon">📍</span>
+                    <div className="stat-info">
+                      <span className="stat-label">Location</span>
+                      <span className="stat-value">{item.location}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <span className="view-more">View Details →</span>
+                </div>
+              </div>
+            ))}
+
             <div 
-              key={item.id}
-              className={`glass-card ${hoveredCard === item.id ? 'hovered' : ''}`}
-              onClick={() => setSelectedItem(item)}
-              onMouseEnter={() => setHoveredCard(item.id)}
-              onMouseLeave={() => setHoveredCard(null)}
+              className="glass-card dashboard-link-card"
+              onClick={onOpenPlacementDashboard}
             >
               <div className="card-header">
-                <div className="alumni-info">
-                  <span className="alumni-icon">👤</span>
-                  <span className="alumni-name">{item.alumni}</span>
-                </div>
-                <span className={`status-pill ${getStatusClass(item.status)}`}>
-                  {getStatusIcon(item.status)} {item.status}
-                </span>
+                <h3>Placement Dashboard</h3>
               </div>
-              <div className="company-section">
-                <span className="company-icon">🏢</span>
-                <span className="company-name">{item.company}</span>
-              </div>
-              <div className="position-section">{item.position}</div>
-              <div className="card-stats">
-                <div className="stat-item">
-                  <span className="stat-icon">💰</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Package</span>
-                    <span className="stat-value">{item.package}</span>
-                  </div>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-icon">📍</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Location</span>
-                    <span className="stat-value">{item.location}</span>
-                  </div>
-                </div>
-              </div>
+              <p className="dashboard-link-text">
+                View and manage placement data requests, company registrations and feedback forms.
+              </p>
               <div className="card-footer">
-                <span className="view-more">View Details →</span>
+                <span className="view-more">Go to Dashboard →</span>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </main>
 
       {renderDetails()}
