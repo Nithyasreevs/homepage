@@ -1,0 +1,147 @@
+/* Main wrapper */
+.wrapper {
+  min-height: 100vh;
+  padding: 30px 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Card UI */
+.card-box {
+  max-width: 1000px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 35px;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.25);
+}
+
+/* Header */
+.header {
+  text-align: center;
+}
+
+.header-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 28px rgba(139, 92, 246, 0.32);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+  margin: 25px 0;
+}
+
+/* Grid for desktop */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Make grid responsive */
+@media (max-width: 768px) {
+  .two-col-grid {
+    grid-template-columns: 1fr; /* stack fields */
+  }
+
+  .card-box {
+    padding: 25px;
+  }
+}
+
+/* Input styles */
+.label {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.emoji {
+  color: #8b5cf6;
+}
+
+.required {
+  color: #ef4444;
+}
+
+.disabled-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+  color: #9ca3af;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  resize: vertical;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* Feedback hint */
+.hint {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+/* Footer */
+.footer-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #9ca3af;
+}

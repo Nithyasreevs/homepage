@@ -1,319 +1,118 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "./feedback.css"; // import the CSS file
 
 const RequesterFeedbackForm = () => {
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Feedback submitted:', { feedback });
-    alert('Feedback submitted successfully!');
+    console.log("Feedback submitted:", { feedback });
+    alert("Feedback submitted successfully!");
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      padding: '20px 15px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      background: '#f8fafc'
-    }}>
-      <div style={{
-        maxWidth: '1000px',
-        margin: '0 auto',
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(20px)',
-        borderRadius: '20px',
-        padding: '25px 20px',
-        border: '1px solid rgba(139, 92, 246, 0.15)',
-        boxShadow: '0 10px 40px rgba(139, 92, 246, 0.2)'
-      }}>
+    <div className="wrapper">
+      <div className="card-box">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '25px' }}>
-          <div style={{
-            width: '60px',
-            height: '60px',
-            background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 15px',
-            fontSize: '28px',
-            boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)'
-          }}>
-            💬
-          </div>
-          <h2 style={{
-            fontSize: '22px',
-            fontWeight: '700',
-            background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            marginBottom: '6px',
-            lineHeight: '1.3'
-          }}>
-            Requester Feedback
-          </h2>
-          <p style={{
-            color: '#6b7280',
-            fontSize: '13px',
-            lineHeight: '1.4',
-            padding: '0 10px'
-          }}>
+        <div className="header">
+          <div className="header-icon">💬</div>
+
+          <h2 className="title">Requester Feedback</h2>
+          <p className="subtitle">
             Please provide honest and constructive feedback to help the applicant grow
           </p>
         </div>
 
-        {/* Divider */}
-        <div style={{
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-          margin: '25px 0'
-        }}></div>
+        <div className="divider" />
 
-        <div>
-          {/* Auto-filled Information Section - Stack on mobile */}
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '1fr', 
-            gap: '15px', 
-            marginBottom: '20px'
-          }}>
-            <div>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '13px',
-                fontWeight: '600',
-                color: '#374151',
-                marginBottom: '6px'
-              }}>
-                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>📧</span>
-                Email ID <span style={{ color: '#ef4444' }}>*</span>
-              </label>
-              <input
-                type="email"
-                placeholder="Auto-filled after login"
-                disabled
-                style={{
-                  width: '100%',
-                  padding: '14px 12px',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  background: '#f9fafb',
-                  color: '#9ca3af',
-                  cursor: 'not-allowed',
-                  boxSizing: 'border-box'
-                }}
-              />
-            </div>
-            <div>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '13px',
-                fontWeight: '600',
-                color: '#374151',
-                marginBottom: '6px'
-              }}>
-                <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🆔</span>
-                Applicant ID <span style={{ color: '#ef4444' }}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Auto-filled after login"
-                disabled
-                style={{
-                  width: '100%',
-                  padding: '14px 12px',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  background: '#f9fafb',
-                  color: '#9ca3af',
-                  cursor: 'not-allowed',
-                  boxSizing: 'border-box'
-                }}
-              />
-            </div>
+        {/* Auto-fill Section */}
+        <div className="two-col-grid">
+          <div>
+            <label className="label">
+              <span className="emoji">📧</span>
+              Email ID <span className="required">*</span>
+            </label>
+            <input
+              type="email"
+              placeholder="Will be auto-filled after successful login"
+              disabled
+              className="disabled-input"
+            />
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
-              fontWeight: '600',
-              color: '#374151',
-              marginBottom: '6px'
-            }}>
-              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>🎓</span>
-              Batch <span style={{ color: '#ef4444' }}>*</span>
+          <div>
+            <label className="label">
+              <span className="emoji">🆔</span>
+              Applicant ID <span className="required">*</span>
             </label>
             <input
               type="text"
-              placeholder="Auto-filled after login"
+              placeholder="Will be auto-filled after successful login"
               disabled
-              style={{
-                width: '100%',
-                padding: '14px 12px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '10px',
-                fontSize: '14px',
-                background: '#f9fafb',
-                color: '#9ca3af',
-                cursor: 'not-allowed',
-                boxSizing: 'border-box'
-              }}
+              className="disabled-input"
             />
           </div>
-
-          {/* Divider */}
-          <div style={{
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '25px 0'
-          }}></div>
-
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
-              fontWeight: '600',
-              color: '#374151',
-              marginBottom: '6px'
-            }}>
-              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>👤</span>
-              Applicant Name <span style={{ color: '#ef4444' }}>*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Auto-filled after login"
-              disabled
-              style={{
-                width: '100%',
-                padding: '14px 12px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '10px',
-                fontSize: '14px',
-                background: '#f9fafb',
-                color: '#9ca3af',
-                cursor: 'not-allowed',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
-
-          {/* Divider */}
-          <div style={{
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '25px 0'
-          }}></div>
-
-          {/* Feedback Section */}
-          <div style={{ marginBottom: '25px' }}>
-            <label style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '13px',
-              fontWeight: '600',
-              color: '#374151',
-              marginBottom: '6px'
-            }}>
-              <span style={{ color: '#8b5cf6', fontSize: '14px' }}>💭</span>
-              Feedback <span style={{ color: '#ef4444' }}>*</span>
-            </label>
-            <textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              placeholder="Write your detailed feedback here. Include strengths, areas for improvement, and recommendations..."
-              rows="6"
-              style={{
-                width: '100%',
-                padding: '14px 12px',
-                border: '1px solid #d1d5db',
-                borderRadius: '10px',
-                fontSize: '14px',
-                outline: 'none',
-                resize: 'vertical',
-                fontFamily: 'inherit',
-                transition: 'border-color 0.2s',
-                boxSizing: 'border-box',
-                minHeight: '120px'
-              }}
-              onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
-            />
-            <p style={{
-              fontSize: '11px',
-              color: '#6b7280',
-              marginTop: '8px',
-              fontStyle: 'italic',
-              lineHeight: '1.4'
-            }}>
-              Provide constructive feedback covering technical skills, communication, problem-solving abilities, and overall impression.
-            </p>
-          </div>
-
-          {/* Divider */}
-          <div style={{
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)',
-            margin: '25px 0'
-          }}></div>
-
-          <button
-            onClick={handleSubmit}
-            style={{
-              width: '100%',
-              padding: '16px',
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '10px',
-              fontSize: '16px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'transform 0.2s, box-shadow 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 8px 20px rgba(139, 92, 246, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = 'none';
-            }}
-            onTouchStart={(e) => {
-              e.target.style.transform = 'translateY(-1px)';
-              e.target.style.boxShadow = '0 6px 15px rgba(139, 92, 246, 0.4)';
-            }}
-            onTouchEnd={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = 'none';
-            }}
-          >
-            Submit Feedback
-          </button>
         </div>
 
-        <div style={{
-          textAlign: 'center',
-          marginTop: '20px',
-          fontSize: '11px',
-          color: '#9ca3af',
-          padding: '0 10px'
-        }}>
-          Designed with ❤️ by Alumni Network
+        <div className="full-field">
+          <label className="label">
+            <span className="emoji">🎓</span>
+            Batch <span className="required">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Will be auto-filled after successful login"
+            disabled
+            className="disabled-input"
+          />
         </div>
+
+        <div className="divider" />
+
+        <div className="full-field">
+          <label className="label">
+            <span className="emoji">👤</span>
+            Applicant Name <span className="required">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Will be auto-filled after successful login"
+            disabled
+            className="disabled-input"
+          />
+        </div>
+
+        <div className="divider" />
+
+        {/* Feedback */}
+        <div className="full-field">
+          <label className="label">
+            <span className="emoji">💭</span>
+            Feedback <span className="required">*</span>
+          </label>
+
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            rows="6"
+            placeholder="Write your detailed feedback here..."
+            className="textarea"
+          />
+
+          <p className="hint">
+            Provide constructive feedback covering technical skills, communication,
+            problem-solving abilities, and overall impression.
+          </p>
+        </div>
+
+        <div className="divider" />
+
+        {/* Button */}
+        <button className="btn" onClick={handleSubmit}>
+          Submit Feedback
+        </button>
+
+        <p className="footer-text">Designed with ❤️ by Alumni Network</p>
       </div>
     </div>
   );
