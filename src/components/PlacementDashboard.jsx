@@ -14,6 +14,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [dateFilter, setDateFilter] = useState('all');
   const [filteredApplications, setFilteredApplications] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
 
   // Mock analytics data with more applications
   useEffect(() => {
@@ -113,6 +114,11 @@ const PlacementDashboard = ({ onBackToHome }) => {
     setSearchTerm('');
     setStatusFilter('all');
     setDateFilter('all');
+    setShowFilters(false);
+  };
+
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
   };
 
   const styles = {
@@ -279,7 +285,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
       letterSpacing: '0.5px',
       lineHeight: '1.2'
     },
-    // Search and Filter Section
+    // Search and Filter Section - MOBILE OPTIMIZED
     searchFilterSection: {
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(20px)',
@@ -291,21 +297,57 @@ const PlacementDashboard = ({ onBackToHome }) => {
       width: '100%',
       boxSizing: 'border-box'
     },
-    searchFilterGrid: {
+    searchContainer: {
       display: 'flex',
       flexDirection: 'column',
       gap: '1rem',
-      alignItems: 'stretch'
+      width: '100%'
+    },
+    searchInputContainer: {
+      position: 'relative',
+      width: '100%'
     },
     searchInput: {
       width: '100%',
-      padding: '12px 16px',
+      padding: '14px 16px 14px 48px',
       borderRadius: '12px',
       border: '1px solid rgba(139, 92, 246, 0.2)',
       fontSize: '1rem',
       background: 'rgba(255, 255, 255, 0.8)',
       transition: 'all 0.3s ease',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      height: '52px'
+    },
+    searchIcon: {
+      position: 'absolute',
+      left: '16px',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      color: '#9ca3af',
+      fontSize: '1.2rem'
+    },
+    filterToggleBtn: {
+      padding: '12px 16px',
+      borderRadius: '10px',
+      border: '1px solid rgba(139, 92, 246, 0.2)',
+      background: 'rgba(139, 92, 246, 0.05)',
+      color: '#7c3aed',
+      fontSize: '0.9rem',
+      fontWeight: '600',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
+      width: '100%'
+    },
+    filtersContainer: {
+      display: showFilters ? 'flex' : 'none',
+      flexDirection: 'column',
+      gap: '1rem',
+      padding: '1rem 0 0 0',
+      borderTop: '1px solid rgba(139, 92, 246, 0.1)'
     },
     filterRow: {
       display: 'flex',
@@ -326,17 +368,23 @@ const PlacementDashboard = ({ onBackToHome }) => {
       marginBottom: '0.25rem'
     },
     filterSelect: {
-      padding: '10px 12px',
+      padding: '12px 16px',
       borderRadius: '10px',
       border: '1px solid rgba(139, 92, 246, 0.2)',
       fontSize: '0.9rem',
       background: 'rgba(255, 255, 255, 0.8)',
       cursor: 'pointer',
       width: '100%',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      height: '48px'
+    },
+    actionButtons: {
+      display: 'flex',
+      gap: '0.75rem',
+      width: '100%'
     },
     clearFiltersBtn: {
-      padding: '10px 16px',
+      padding: '12px 16px',
       borderRadius: '10px',
       border: '1px solid rgba(239, 68, 68, 0.2)',
       background: 'rgba(239, 68, 68, 0.1)',
@@ -346,15 +394,37 @@ const PlacementDashboard = ({ onBackToHome }) => {
       cursor: 'pointer',
       transition: 'all 0.3s ease',
       whiteSpace: 'nowrap',
-      width: '100%',
-      boxSizing: 'border-box'
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '6px'
+    },
+    applyFiltersBtn: {
+      padding: '12px 16px',
+      borderRadius: '10px',
+      border: '1px solid rgba(139, 92, 246, 0.2)',
+      background: 'rgba(139, 92, 246, 0.1)',
+      color: '#7c3aed',
+      fontSize: '0.9rem',
+      fontWeight: '600',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      whiteSpace: 'nowrap',
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '6px'
     },
     resultsCount: {
       fontSize: '0.85rem',
       color: '#6b7280',
       fontWeight: '500',
-      marginTop: '0.5rem',
-      textAlign: 'center'
+      marginTop: '1rem',
+      textAlign: 'center',
+      padding: '0.5rem 0',
+      borderTop: '1px solid rgba(139, 92, 246, 0.1)'
     },
     // Applications Table
     applicationsSection: {
@@ -561,6 +631,14 @@ const PlacementDashboard = ({ onBackToHome }) => {
     }
   };
 
+  const handleFilterToggle = () => {
+    setShowFilters(!showFilters);
+  };
+
+  const handleApplyFilters = () => {
+    setShowFilters(false);
+  };
+
   const DashboardView = () => (
     <div style={styles.placementDashboard}>
       <div style={{ width: '100%' }}>
@@ -616,68 +694,82 @@ const PlacementDashboard = ({ onBackToHome }) => {
             </div>
           )}
 
-          {/* Search and Filter Section */}
+          {/* Search and Filter Section - MOBILE OPTIMIZED */}
           <div style={styles.searchFilterSection}>
-            <div style={styles.searchFilterGrid}>
-              <div style={styles.filterGroup}>
-                <label style={styles.filterLabel}>Search Applications</label>
+            <div style={styles.searchContainer}>
+              {/* Search Input */}
+              <div style={styles.searchInputContainer}>
+                <div style={styles.searchIcon}>🔍</div>
                 <input
                   type="text"
-                  placeholder="Search by name, company, role, or status..."
+                  placeholder="Search applications..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   style={styles.searchInput}
                 />
               </div>
-              
-              <div style={styles.filterRow}>
-                <div style={styles.filterGroup}>
-                  <label style={styles.filterLabel}>Status</label>
-                  <select 
-                    value={statusFilter} 
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                    style={styles.filterSelect}
-                  >
-                    <option value="all">All Status</option>
-                    <option value="pending">Pending</option>
-                    <option value="inProgress">In Progress</option>
-                    <option value="completed">Completed</option>
-                    <option value="rejected">Rejected</option>
-                  </select>
+
+              {/* Filter Toggle Button */}
+              <button 
+                style={styles.filterToggleBtn}
+                onClick={handleFilterToggle}
+              >
+                {showFilters ? '▲ Hide Filters' : '▼ Show Filters'}
+              </button>
+
+              {/* Filters Container */}
+              <div style={styles.filtersContainer}>
+                <div style={styles.filterRow}>
+                  <div style={styles.filterGroup}>
+                    <label style={styles.filterLabel}>Status</label>
+                    <select 
+                      value={statusFilter} 
+                      onChange={(e) => setStatusFilter(e.target.value)}
+                      style={styles.filterSelect}
+                    >
+                      <option value="all">All Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="inProgress">In Progress</option>
+                      <option value="completed">Completed</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                  </div>
+                  
+                  <div style={styles.filterGroup}>
+                    <label style={styles.filterLabel}>Date Range</label>
+                    <select 
+                      value={dateFilter} 
+                      onChange={(e) => setDateFilter(e.target.value)}
+                      style={styles.filterSelect}
+                    >
+                      <option value="all">All Time</option>
+                      <option value="today">Today</option>
+                      <option value="week">Last Week</option>
+                      <option value="month">Last Month</option>
+                    </select>
+                  </div>
                 </div>
-                
-                <div style={styles.filterGroup}>
-                  <label style={styles.filterLabel}>Date</label>
-                  <select 
-                    value={dateFilter} 
-                    onChange={(e) => setDateFilter(e.target.value)}
-                    style={styles.filterSelect}
+
+                {/* Action Buttons */}
+                <div style={styles.actionButtons}>
+                  <button 
+                    onClick={clearFilters}
+                    style={styles.clearFiltersBtn}
                   >
-                    <option value="all">All Time</option>
-                    <option value="today">Today</option>
-                    <option value="week">Last Week</option>
-                    <option value="month">Last Month</option>
-                  </select>
+                    🗑️ Clear
+                  </button>
+                  <button 
+                    onClick={handleApplyFilters}
+                    style={styles.applyFiltersBtn}
+                  >
+                    ✅ Apply
+                  </button>
                 </div>
-                
-                <button 
-                  onClick={clearFilters}
-                  style={styles.clearFiltersBtn}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)';
-                    e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.2)';
-                  }}
-                >
-                  Clear Filters
-                </button>
               </div>
-              
+
+              {/* Results Count */}
               <div style={styles.resultsCount}>
-                Showing {filteredApplications.length} of {analyticsData?.applications.length} applications
+                📊 Showing {filteredApplications.length} of {analyticsData?.applications.length} applications
               </div>
             </div>
           </div>
@@ -934,7 +1026,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
           }
           
           .analytics-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-templateColumns: repeat(3, 1fr) !important;
             gap: 1.25rem !important;
           }
           
@@ -944,21 +1036,6 @@ const PlacementDashboard = ({ onBackToHome }) => {
           
           .analytics-value {
             font-size: 2rem !important;
-          }
-          
-          .filter-row {
-            flex-direction: row !important;
-            flex-wrap: wrap;
-          }
-          
-          .filter-group {
-            flex: 1;
-            min-width: 140px;
-          }
-          
-          .clear-filters-btn {
-            width: auto !important;
-            min-width: 120px;
           }
         }
         
@@ -1012,6 +1089,44 @@ const PlacementDashboard = ({ onBackToHome }) => {
           
           .big-card-text {
             font-size: 0.9rem !important;
+          }
+          
+          /* Desktop search layout */
+          .search-container {
+            flex-direction: row !important;
+            align-items: end;
+            gap: 1.5rem;
+          }
+          
+          .search-input-container {
+            flex: 2;
+          }
+          
+          .filter-toggle-btn {
+            display: none !important;
+          }
+          
+          .filters-container {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 1.5rem;
+            padding: 0;
+            border-top: none;
+          }
+          
+          .filter-row {
+            flex-direction: row !important;
+            gap: 1.5rem;
+          }
+          
+          .filter-group {
+            min-width: 150px;
+          }
+          
+          .action-buttons {
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 120px;
           }
         }
         
@@ -1075,6 +1190,10 @@ const PlacementDashboard = ({ onBackToHome }) => {
             width: 45px;
             height: 45px;
             font-size: 1.2rem;
+          }
+          
+          .search-input, .filter-select {
+            font-size: 16px; /* Prevents zoom on iOS */
           }
         }
       `}</style>
