@@ -3,6 +3,9 @@ import PlacementDataRequestForm from './placement/PlacementDataRequestForm';
 import CompanyRegistrationForm from './placement/CompanyRegistrationForm';
 import RequesterFeedbackForm from './placement/RequesterFeedbackForm';
 import PlacementFeedbackForm from './placement/PlacementFeedbackForm';
+import AdminDashboard from './placement/AdminDashboard';
+import AssignedCompanies from './placement/AssignedCompanies';
+import InterviewResults from './placement/InterviewResults'; // Add this import
 
 const PlacementDashboard = ({ onBackToHome }) => {
   const [view, setView] = useState('dashboard');
@@ -320,6 +323,45 @@ const PlacementDashboard = ({ onBackToHome }) => {
 
             <div
               style={styles.formCard}
+              onClick={() => setView('assignedCompanies')}
+              onMouseEnter={(e) => handleCardHover(e, true)}
+              onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'assignedCompanies')}
+            >
+              <div style={styles.cardHeader}>
+                <div style={styles.cardIcon}>📋</div>
+                <div style={styles.cardTitleWrapper}>
+                  <h3 style={styles.cardTitle}>Assigned Companies</h3>
+                  <span style={styles.roleBadge}>View</span>
+                </div>
+              </div>
+              <p style={styles.cardText}>
+                View and manage companies assigned for placement activities.
+              </p>
+            </div>
+
+            {/* Add Interview Results Card */}
+            <div
+              style={styles.formCard}
+              onClick={() => setView('interviewResults')}
+              onMouseEnter={(e) => handleCardHover(e, true)}
+              onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'interviewResults')}
+            >
+              <div style={styles.cardHeader}>
+                <div style={styles.cardIcon}>📈</div>
+                <div style={styles.cardTitleWrapper}>
+                  <h3 style={styles.cardTitle}>Interview Results</h3>
+                  <span style={styles.roleBadge}>Results</span>
+                </div>
+              </div>
+              <p style={styles.cardText}>
+                View and manage interview outcomes and candidate selection results.
+              </p>
+            </div>
+
+            <div
+              style={styles.formCard}
               onClick={() => setView('requesterFeedback')}
               onMouseEnter={(e) => handleCardHover(e, true)}
               onMouseLeave={(e) => handleCardHover(e, false)}
@@ -351,6 +393,26 @@ const PlacementDashboard = ({ onBackToHome }) => {
               </div>
               <p style={styles.cardText}>
                 Capture detailed feedback on the final placement outcome.
+              </p>
+            </div>
+
+            {/* Admin Dashboard Card */}
+            <div
+              style={styles.formCard}
+              onClick={() => setView('adminDashboard')}
+              onMouseEnter={(e) => handleCardHover(e, true)}
+              onMouseLeave={(e) => handleCardHover(e, false)}
+              onTouchStart={(e) => handleCardTouch(e, 'adminDashboard')}
+            >
+              <div style={styles.cardHeader}>
+                <div style={styles.cardIcon}>⚙️</div>
+                <div style={styles.cardTitleWrapper}>
+                  <h3 style={styles.cardTitle}>Admin Dashboard</h3>
+                  <span style={styles.roleBadge}>Management</span>
+                </div>
+              </div>
+              <p style={styles.cardText}>
+                Comprehensive admin panel to manage all placement activities and data.
               </p>
             </div>
           </div>
@@ -389,8 +451,11 @@ const PlacementDashboard = ({ onBackToHome }) => {
         {view === 'dashboard' && <DashboardView />}
         {view === 'dataRequest' && <FormView formComponent={<PlacementDataRequestForm />} />}
         {view === 'company' && <FormView formComponent={<CompanyRegistrationForm />} />}
+        {view === 'assignedCompanies' && <FormView formComponent={<AssignedCompanies />} />}
+        {view === 'interviewResults' && <FormView formComponent={<InterviewResults />} />}
         {view === 'requesterFeedback' && <FormView formComponent={<RequesterFeedbackForm />} />}
         {view === 'placementFeedback' && <FormView formComponent={<PlacementFeedbackForm />} />}
+        {view === 'adminDashboard' && <FormView formComponent={<AdminDashboard />} />}
       </main>
 
       <style>{`
