@@ -37,11 +37,6 @@ const PlacementDashboard = ({ onBackToHome }) => {
         { id: 8, name: 'Amanda Garcia', company: 'Microsoft', status: 'rejected', date: '2024-01-11', role: 'UX Designer', ctc: '32 LPA' },
         { id: 9, name: 'Robert Wilson', company: 'Amazon', status: 'inProgress', date: '2024-01-19', role: 'DevOps Engineer', ctc: '44 LPA' },
         { id: 10, name: 'Lisa Anderson', company: 'Google', status: 'completed', date: '2024-01-10', role: 'Data Analyst', ctc: '36 LPA' }
-      ],
-      recentApplications: [
-        { id: 1, name: 'John Doe', company: 'Google', status: 'completed', date: '2024-01-15' },
-        { id: 2, name: 'Jane Smith', company: 'Microsoft', status: 'pending', date: '2024-01-16' },
-        { id: 3, name: 'Mike Johnson', company: 'Amazon', status: 'rejected', date: '2024-01-14' }
       ]
     };
     setAnalyticsData(mockAnalyticsData);
@@ -123,9 +118,10 @@ const PlacementDashboard = ({ onBackToHome }) => {
   const styles = {
     dashboardWrapper: {
       minHeight: '100vh',
-      width: '100vw',
+      width: '100%',
       position: 'relative',
-      background: 'linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 50%, #e6e9ff 100%)'
+      background: 'linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 50%, #e6e9ff 100%)',
+      overflowX: 'hidden'
     },
     animatedBg: {
       position: 'fixed',
@@ -144,32 +140,35 @@ const PlacementDashboard = ({ onBackToHome }) => {
       animation: 'float 20s infinite ease-in-out'
     },
     orb1: {
-      width: '500px',
-      height: '500px',
+      width: '300px',
+      height: '300px',
       background: 'radial-gradient(circle, #8b5cf6 0%, #a855f7 100%)',
-      top: '-250px',
-      left: '-250px'
+      top: '-150px',
+      left: '-150px'
     },
     orb2: {
-      width: '400px',
-      height: '400px',
+      width: '250px',
+      height: '250px',
       background: 'radial-gradient(circle, #c4b5fd 0%, #a78bfa 100%)',
       top: '50%',
-      right: '-200px',
+      right: '-125px',
       animationDelay: '7s'
     },
     orb3: {
-      width: '350px',
-      height: '350px',
+      width: '200px',
+      height: '200px',
       background: 'radial-gradient(circle, #ddd6fe 0%, #c4b5fd 100%)',
-      bottom: '-150px',
-      left: '30%',
+      bottom: '-100px',
+      left: '20%',
       animationDelay: '14s'
     },
     contentSection: {
       position: 'relative',
       zIndex: 10,
-      padding: '0 20px 40px'
+      padding: '0 16px 32px',
+      width: '100%',
+      maxWidth: '100%',
+      boxSizing: 'border-box'
     },
     placementDashboard: {
       display: 'flex',
@@ -177,31 +176,33 @@ const PlacementDashboard = ({ onBackToHome }) => {
       alignItems: 'center',
       minHeight: '80vh',
       justifyContent: 'flex-start',
-      padding: '2rem 0',
+      padding: '1.5rem 0',
       width: '100%'
     },
     placementContent: {
       width: '100%',
-      maxWidth: '1400px',
+      maxWidth: '100%',
       margin: '0 auto',
-      padding: '0'
+      padding: '0',
+      boxSizing: 'border-box'
     },
     dashboardHeader: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       textAlign: 'center',
-      marginBottom: '2.5rem',
+      marginBottom: '2rem',
       position: 'relative',
-      width: '100%'
+      width: '100%',
+      padding: '0 8px'
     },
     headerContent: {
-      maxWidth: '800px',
+      maxWidth: '100%',
       margin: '0 auto',
       width: '100%'
     },
     title: {
-      fontSize: '2rem',
+      fontSize: '1.75rem',
       fontWeight: '800',
       background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
       WebkitBackgroundClip: 'text',
@@ -209,106 +210,117 @@ const PlacementDashboard = ({ onBackToHome }) => {
       backgroundClip: 'text',
       marginBottom: '0.5rem',
       letterSpacing: '-0.5px',
-      lineHeight: '1.2'
+      lineHeight: '1.2',
+      wordWrap: 'break-word'
     },
     subtitle: {
-      fontSize: '0.95rem',
+      fontSize: '0.9rem',
       color: '#6b7280',
       marginBottom: 0,
       fontWeight: 400,
-      padding: '0 20px'
+      padding: '0 12px',
+      lineHeight: '1.4'
     },
     backBtn: {
-      padding: '10px 20px',
-      borderRadius: '16px',
+      padding: '10px 16px',
+      borderRadius: '12px',
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(10px)',
       border: '1px solid rgba(139, 92, 246, 0.2)',
       color: '#7c3aed',
       fontWeight: '600',
-      fontSize: '0.9rem',
+      fontSize: '0.85rem',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
       boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)',
       marginTop: '1rem',
-      display: 'inline-block'
+      display: 'inline-block',
+      width: 'auto'
     },
     // Analytics Cards Styles
     analyticsSection: {
       width: '100%',
-      marginBottom: '3rem'
+      marginBottom: '2rem',
+      padding: '0 8px'
     },
     analyticsGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-      gap: '1.5rem',
-      marginBottom: '2rem',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: '1rem',
+      marginBottom: '1.5rem',
       width: '100%'
     },
     analyticsCard: {
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(20px)',
       border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '20px',
-      padding: '1.5rem',
+      borderRadius: '16px',
+      padding: '1.25rem 1rem',
       transition: 'all 0.3s ease',
       boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
-      textAlign: 'center'
+      textAlign: 'center',
+      minHeight: '100px'
     },
     analyticsValue: {
-      fontSize: '2.5rem',
+      fontSize: '1.75rem',
       fontWeight: '800',
       margin: '0.5rem 0',
       background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text'
+      backgroundClip: 'text',
+      lineHeight: '1.2'
     },
     analyticsLabel: {
-      fontSize: '0.9rem',
+      fontSize: '0.75rem',
       color: '#6b7280',
       fontWeight: '600',
       textTransform: 'uppercase',
-      letterSpacing: '0.5px'
+      letterSpacing: '0.5px',
+      lineHeight: '1.2'
     },
     // Search and Filter Section
     searchFilterSection: {
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(20px)',
       border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '20px',
-      padding: '1.5rem',
-      marginBottom: '2rem',
-      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)'
+      borderRadius: '16px',
+      padding: '1.25rem',
+      marginBottom: '1.5rem',
+      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
+      width: '100%',
+      boxSizing: 'border-box'
     },
     searchFilterGrid: {
-      display: 'grid',
-      gridTemplateColumns: '1fr',
+      display: 'flex',
+      flexDirection: 'column',
       gap: '1rem',
-      alignItems: 'end'
+      alignItems: 'stretch'
     },
     searchInput: {
       width: '100%',
-      padding: '12px 20px',
+      padding: '12px 16px',
       borderRadius: '12px',
       border: '1px solid rgba(139, 92, 246, 0.2)',
       fontSize: '1rem',
       background: 'rgba(255, 255, 255, 0.8)',
-      transition: 'all 0.3s ease'
+      transition: 'all 0.3s ease',
+      boxSizing: 'border-box'
     },
     filterRow: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr auto',
+      display: 'flex',
+      flexDirection: 'column',
       gap: '1rem',
-      alignItems: 'end'
+      alignItems: 'stretch'
     },
     filterGroup: {
       display: 'flex',
       flexDirection: 'column',
-      gap: '0.5rem'
+      gap: '0.5rem',
+      width: '100%'
     },
     filterLabel: {
-      fontSize: '0.85rem',
+      fontSize: '0.8rem',
       fontWeight: '600',
       color: '#374151',
       marginBottom: '0.25rem'
@@ -319,7 +331,9 @@ const PlacementDashboard = ({ onBackToHome }) => {
       border: '1px solid rgba(139, 92, 246, 0.2)',
       fontSize: '0.9rem',
       background: 'rgba(255, 255, 255, 0.8)',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      width: '100%',
+      boxSizing: 'border-box'
     },
     clearFiltersBtn: {
       padding: '10px 16px',
@@ -331,72 +345,85 @@ const PlacementDashboard = ({ onBackToHome }) => {
       fontWeight: '600',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      width: '100%',
+      boxSizing: 'border-box'
     },
     resultsCount: {
-      fontSize: '0.9rem',
+      fontSize: '0.85rem',
       color: '#6b7280',
       fontWeight: '500',
-      marginTop: '0.5rem'
+      marginTop: '0.5rem',
+      textAlign: 'center'
     },
     // Applications Table
     applicationsSection: {
-      marginBottom: '3rem'
+      marginBottom: '2rem',
+      width: '100%',
+      padding: '0 8px'
     },
     sectionTitle: {
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
       fontWeight: '700',
       color: '#1f2937',
-      marginBottom: '1.5rem',
+      marginBottom: '1rem',
       textAlign: 'center'
     },
     applicationsTable: {
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(20px)',
       border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '20px',
+      borderRadius: '16px',
       overflow: 'hidden',
       boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
-      marginBottom: '2rem'
+      marginBottom: '1.5rem',
+      width: '100%',
+      overflowX: 'auto'
+    },
+    tableContainer: {
+      minWidth: '600px',
+      width: '100%'
     },
     tableHeader: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-      padding: '1.5rem',
+      padding: '1rem',
       background: 'rgba(139, 92, 246, 0.05)',
       borderBottom: '1px solid rgba(139, 92, 246, 0.1)',
       fontWeight: '600',
       color: '#374151',
-      fontSize: '0.9rem'
+      fontSize: '0.8rem',
+      minWidth: '600px'
     },
     tableRow: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-      padding: '1.25rem 1.5rem',
+      padding: '1rem',
       borderBottom: '1px solid rgba(139, 92, 246, 0.05)',
       alignItems: 'center',
-      transition: 'all 0.3s ease'
+      transition: 'all 0.3s ease',
+      minWidth: '600px'
     },
     statusBadge: {
-      padding: '6px 12px',
-      borderRadius: '20px',
-      fontSize: '0.8rem',
+      padding: '4px 8px',
+      borderRadius: '12px',
+      fontSize: '0.7rem',
       fontWeight: '600',
       textTransform: 'capitalize',
       display: 'inline-flex',
       alignItems: 'center',
-      gap: '4px',
+      gap: '2px',
       width: 'fit-content'
     },
-    // Big Quick Actions Cards Styles - 3 per row
+    // Big Quick Actions Cards Styles
     navigationSection: {
-      width: '100%'
+      width: '100%',
+      padding: '0 8px'
     },
     bigCardsGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-      gap: '2rem',
-      maxWidth: '1400px',
+      gridTemplateColumns: '1fr',
+      gap: '1rem',
       margin: '0 auto',
       width: '100%'
     },
@@ -404,10 +431,10 @@ const PlacementDashboard = ({ onBackToHome }) => {
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(20px)',
       border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '20px',
-      padding: '2rem 1.5rem',
+      borderRadius: '16px',
+      padding: '1.5rem 1.25rem',
       cursor: 'pointer',
-      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+      transition: 'all 0.3s ease',
       boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
       textAlign: 'left',
       display: 'flex',
@@ -415,70 +442,75 @@ const PlacementDashboard = ({ onBackToHome }) => {
       justifyContent: 'center',
       position: 'relative',
       overflow: 'hidden',
-      minHeight: '180px'
+      minHeight: '140px',
+      width: '100%',
+      boxSizing: 'border-box'
     },
     bigCardHeader: {
       display: 'flex',
       alignItems: 'center',
-      gap: '1.25rem',
-      marginBottom: '1rem'
+      gap: '1rem',
+      marginBottom: '0.75rem'
     },
     bigCardIcon: {
-      width: '60px',
-      height: '60px',
-      borderRadius: '16px',
+      width: '50px',
+      height: '50px',
+      borderRadius: '14px',
       background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       color: 'white',
-      fontSize: '1.6rem',
+      fontSize: '1.4rem',
       flexShrink: 0,
       boxShadow: '0 6px 20px rgba(139, 92, 246, 0.4)'
     },
     bigCardTitleWrapper: {
-      flex: 1
+      flex: 1,
+      minWidth: 0
     },
     bigCardTitle: {
-      fontSize: '1.4rem',
+      fontSize: '1.1rem',
       fontWeight: '700',
       color: '#1f2937',
-      margin: '0 0 0.5rem 0',
-      lineHeight: 1.3
+      margin: '0 0 0.25rem 0',
+      lineHeight: 1.3,
+      wordWrap: 'break-word'
     },
     bigCardBadge: {
       display: 'inline-block',
       background: 'rgba(139, 92, 246, 0.12)',
       color: '#7c3aed',
-      padding: '0.35rem 0.75rem',
-      borderRadius: '12px',
-      fontSize: '0.8rem',
+      padding: '0.25rem 0.5rem',
+      borderRadius: '8px',
+      fontSize: '0.7rem',
       fontWeight: '600',
       border: '1px solid rgba(139, 92, 246, 0.25)'
     },
     bigCardText: {
       color: '#6b7280',
-      lineHeight: 1.6,
-      fontSize: '1rem',
+      lineHeight: 1.5,
+      fontSize: '0.85rem',
       margin: 0,
-      paddingLeft: '0'
+      wordWrap: 'break-word'
     },
     singleFormLayout: {
       display: 'flex',
       justifyContent: 'center',
       width: '100%',
-      maxWidth: '1400px',
+      maxWidth: '100%',
       margin: '0 auto',
-      padding: '0'
+      padding: '0 16px',
+      boxSizing: 'border-box'
     },
     formBackBtn: {
       padding: '10px 16px',
-      borderRadius: '16px',
+      borderRadius: '12px',
       border: '1px solid rgba(139, 92, 246, 0.25)',
       background: 'rgba(255, 255, 255, 0.9)',
       backdropFilter: 'blur(10px)',
       color: '#7c3aed',
-      fontSize: '0.9rem',
+      fontSize: '0.85rem',
       fontWeight: '600',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
@@ -486,16 +518,17 @@ const PlacementDashboard = ({ onBackToHome }) => {
       marginBottom: '1.5rem',
       display: 'inline-flex',
       alignItems: 'center',
-      gap: '6px'
+      gap: '6px',
+      width: 'auto'
     }
   };
 
   const handleBigCardHover = (e, isHovering) => {
     if (isHovering) {
-      e.currentTarget.style.transform = 'translateY(-6px) scale(1.02)';
-      e.currentTarget.style.boxShadow = '0 16px 40px rgba(139, 92, 246, 0.25)';
+      e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+      e.currentTarget.style.boxShadow = '0 12px 30px rgba(139, 92, 246, 0.2)';
       e.currentTarget.style.background = 'rgba(255, 255, 255, 0.95)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
     } else {
       e.currentTarget.style.transform = '';
       e.currentTarget.style.boxShadow = '0 8px 30px rgba(139, 92, 246, 0.12)';
@@ -509,7 +542,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
     e.currentTarget.style.transition = 'transform 0.1s';
     setTimeout(() => {
       e.currentTarget.style.transform = '';
-      e.currentTarget.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      e.currentTarget.style.transition = 'all 0.3s ease';
       setView(viewName);
     }, 100);
   };
@@ -517,9 +550,9 @@ const PlacementDashboard = ({ onBackToHome }) => {
   const handleBackBtnHover = (e, isHovering) => {
     if (isHovering) {
       e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
       e.currentTarget.style.transform = 'translateX(-2px)';
-      e.currentTarget.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.2)';
+      e.currentTarget.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.15)';
     } else {
       e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
       e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
@@ -653,48 +686,50 @@ const PlacementDashboard = ({ onBackToHome }) => {
           <div style={styles.applicationsSection}>
             <h3 style={styles.sectionTitle}>Recent Applications</h3>
             <div style={styles.applicationsTable}>
-              <div style={styles.tableHeader}>
-                <div>Name</div>
-                <div>Company</div>
-                <div>Role</div>
-                <div>CTC</div>
-                <div>Date</div>
-                <div>Status</div>
-              </div>
-              {filteredApplications.map((application) => (
-                <div 
-                  key={application.id} 
-                  style={{
-                    ...styles.tableRow,
-                    background: application.status === 'completed' ? 'rgba(16, 185, 129, 0.05)' : 
-                               application.status === 'rejected' ? 'rgba(239, 68, 68, 0.05)' : 
-                               application.status === 'pending' ? 'rgba(245, 158, 11, 0.05)' : 
-                               'rgba(59, 130, 246, 0.05)'
-                  }}
-                >
-                  <div style={{ fontWeight: '600' }}>{application.name}</div>
-                  <div>{application.company}</div>
-                  <div>{application.role}</div>
-                  <div>{application.ctc}</div>
-                  <div>{new Date(application.date).toLocaleDateString()}</div>
-                  <div>
-                    <span 
-                      style={{
-                        ...styles.statusBadge,
-                        background: `rgba(${getStatusColor(application.status).replace('#', '')}, 0.1)`,
-                        color: getStatusColor(application.status),
-                        border: `1px solid ${getStatusColor(application.status)}20`
-                      }}
-                    >
-                      {getStatusIcon(application.status)} {application.status}
-                    </span>
-                  </div>
+              <div style={styles.tableContainer}>
+                <div style={styles.tableHeader}>
+                  <div>Name</div>
+                  <div>Company</div>
+                  <div>Role</div>
+                  <div>CTC</div>
+                  <div>Date</div>
+                  <div>Status</div>
                 </div>
-              ))}
+                {filteredApplications.map((application) => (
+                  <div 
+                    key={application.id} 
+                    style={{
+                      ...styles.tableRow,
+                      background: application.status === 'completed' ? 'rgba(16, 185, 129, 0.05)' : 
+                                 application.status === 'rejected' ? 'rgba(239, 68, 68, 0.05)' : 
+                                 application.status === 'pending' ? 'rgba(245, 158, 11, 0.05)' : 
+                                 'rgba(59, 130, 246, 0.05)'
+                    }}
+                  >
+                    <div style={{ fontWeight: '600', fontSize: '0.85rem' }}>{application.name}</div>
+                    <div style={{ fontSize: '0.85rem' }}>{application.company}</div>
+                    <div style={{ fontSize: '0.85rem' }}>{application.role}</div>
+                    <div style={{ fontSize: '0.85rem' }}>{application.ctc}</div>
+                    <div style={{ fontSize: '0.85rem' }}>{new Date(application.date).toLocaleDateString()}</div>
+                    <div>
+                      <span 
+                        style={{
+                          ...styles.statusBadge,
+                          background: `rgba(${getStatusColor(application.status).replace('#', '')}, 0.1)`,
+                          color: getStatusColor(application.status),
+                          border: `1px solid ${getStatusColor(application.status)}20`
+                        }}
+                      >
+                        {getStatusIcon(application.status)} {application.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Big Quick Actions Cards Section - BOTTOM (3 per row) */}
+          {/* Big Quick Actions Cards Section - BOTTOM */}
           <div style={styles.navigationSection}>
             <h3 style={styles.sectionTitle}>Quick Actions</h3>
             <div style={styles.bigCardsGrid}>
@@ -845,7 +880,7 @@ const PlacementDashboard = ({ onBackToHome }) => {
   const FormView = ({ formComponent }) => (
     <div style={styles.placementDashboard}>
       <div style={styles.singleFormLayout}>
-        <section style={{ ...styles.placementContent, maxWidth: '700px', padding: 0 }}>
+        <section style={{ ...styles.placementContent, maxWidth: '100%', padding: 0 }}>
           <button
             style={styles.formBackBtn}
             onClick={() => setView('dashboard')}
@@ -885,170 +920,94 @@ const PlacementDashboard = ({ onBackToHome }) => {
             transform: translate(0, 0) scale(1);
           }
           33% {
-            transform: translate(50px, -50px) scale(1.1);
+            transform: translate(30px, -30px) scale(1.1);
           }
           66% {
-            transform: translate(-30px, 30px) scale(0.9);
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+        }
+        
+        /* Mobile First Styles */
+        @media (min-width: 480px) {
+          .content-section {
+            padding: 0 20px 40px;
+          }
+          
+          .analytics-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 1.25rem !important;
+          }
+          
+          .analytics-card {
+            padding: 1.5rem 1rem !important;
+          }
+          
+          .analytics-value {
+            font-size: 2rem !important;
+          }
+          
+          .filter-row {
+            flex-direction: row !important;
+            flex-wrap: wrap;
+          }
+          
+          .filter-group {
+            flex: 1;
+            min-width: 140px;
+          }
+          
+          .clear-filters-btn {
+            width: auto !important;
+            min-width: 120px;
           }
         }
         
         @media (min-width: 768px) {
-          .dashboard-wrapper .content-section {
-            padding: 0 40px 60px;
-          }
-          
-          .placement-dashboard {
-            padding: 2.5rem 0;
-          }
-          
-          .placement-content {
-            padding: 0 2rem !important;
-          }
-          
-          .dashboard-header {
-            margin-bottom: 3.5rem;
-          }
-          
-          .title {
-            font-size: 2.5rem !important;
-          }
-          
-          .subtitle {
-            font-size: 1.05rem !important;
-          }
-          
-          .back-btn {
-            position: absolute;
-            right: 0;
-            top: 0;
-            margin-top: 0;
-          }
-          
-          .analytics-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 2rem !important;
-          }
-          
-          .search-filter-grid {
-            grid-template-columns: 2fr 1fr !important;
-            gap: 1.5rem !important;
-          }
-          
-          .filter-row {
-            grid-template-columns: 1fr 1fr auto !important;
-          }
-          
-          .big-cards-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 2rem !important;
-          }
-          
-          .analytics-card {
-            padding: 2rem !important;
-          }
-        }
-        
-        @media (min-width: 1024px) {
           .content-section {
-            padding: 0 60px 60px !important;
+            padding: 0 32px 48px;
           }
           
           .placement-dashboard {
-            padding: 3rem 0 !important;
-          }
-          
-          .placement-content {
-            padding: 0 3rem !important;
+            padding: 2rem 0;
           }
           
           .dashboard-header {
-            margin-bottom: 4rem !important;
+            margin-bottom: 2.5rem;
           }
           
           .title {
-            font-size: 3rem !important;
+            font-size: 2.25rem !important;
           }
           
           .subtitle {
-            font-size: 1.15rem !important;
-          }
-          
-          .back-btn {
-            padding: 12px 24px !important;
-            font-size: 0.95rem !important;
+            font-size: 1rem !important;
           }
           
           .analytics-grid {
             grid-template-columns: repeat(6, 1fr) !important;
-            gap: 2.5rem !important;
-          }
-          
-          .search-filter-grid {
-            grid-template-columns: 1fr auto !important;
-          }
-          
-          .big-cards-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 2.5rem !important;
           }
           
           .analytics-card {
-            padding: 2.5rem !important;
-            min-height: 140px;
-          }
-          
-          .big-card {
-            padding: 2.5rem 2rem !important;
-            min-height: 200px;
+            padding: 1.75rem 1.25rem !important;
+            min-height: 120px;
           }
           
           .analytics-value {
-            font-size: 3rem !important;
+            font-size: 2.25rem !important;
           }
           
-          .analytics-label {
-            font-size: 1rem !important;
-          }
-          
-          .big-card-title {
-            font-size: 1.5rem !important;
-          }
-          
-          .big-card-text {
-            font-size: 1.05rem !important;
-          }
-          
-          .big-card-icon {
-            width: 70px !important;
-            height: 70px !important;
-            font-size: 1.8rem !important;
-          }
-        }
-        
-        @media (max-width: 767px) {
           .big-cards-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, 1fr) !important;
             gap: 1.5rem !important;
           }
           
           .big-card {
-            padding: 1.75rem 1.25rem !important;
+            padding: 1.75rem 1.5rem !important;
             min-height: 160px;
           }
           
-          .big-card-header {
-            gap: 1rem !important;
-            margin-bottom: 0.75rem !important;
-          }
-          
-          .big-card-icon {
-            width: 50px !important;
-            height: 50px !important;
-            font-size: 1.4rem !important;
-          }
-          
           .big-card-title {
-            font-size: 1.2rem !important;
+            font-size: 1.3rem !important;
           }
           
           .big-card-text {
@@ -1056,22 +1015,66 @@ const PlacementDashboard = ({ onBackToHome }) => {
           }
         }
         
-        @media (max-width: 480px) {
-          .table-header, .table-row {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 0.5rem;
+        @media (min-width: 1024px) {
+          .content-section {
+            padding: 0 40px 60px;
           }
           
-          .table-header div:nth-child(3),
-          .table-header div:nth-child(4),
-          .table-header div:nth-child(5) {
-            display: none;
+          .placement-dashboard {
+            padding: 2.5rem 0;
           }
           
-          .table-row div:nth-child(3),
-          .table-row div:nth-child(4),
-          .table-row div:nth-child(5) {
-            display: none;
+          .title {
+            font-size: 2.5rem !important;
+          }
+          
+          .analytics-card {
+            padding: 2rem 1.5rem !important;
+          }
+          
+          .analytics-value {
+            font-size: 2.5rem !important;
+          }
+          
+          .big-cards-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 2rem !important;
+          }
+          
+          .big-card {
+            padding: 2rem 1.75rem !important;
+            min-height: 180px;
+          }
+          
+          .big-card-title {
+            font-size: 1.4rem !important;
+          }
+          
+          .big-card-text {
+            font-size: 1rem !important;
+          }
+        }
+        
+        @media (min-width: 1200px) {
+          .placement-content {
+            max-width: 1200px !important;
+          }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+          .big-card {
+            min-height: 150px;
+          }
+          
+          .big-card-header {
+            gap: 0.75rem;
+          }
+          
+          .big-card-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
           }
         }
       `}</style>
