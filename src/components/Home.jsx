@@ -420,6 +420,37 @@ const AlumniDashboard = ({ onOpenPlacementDashboard }) => {
 
         {selectedTab === 'placements' && (
           <div className="cards-container">
+            {/* Dashboard Link Card - Now at the top */}
+            <div 
+              className="glass-card dashboard-link-card featured-card"
+              onClick={onOpenPlacementDashboard}
+              onMouseEnter={() => setHoveredCard('dashboard')}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div className="card-header">
+                <div className="featured-badge">
+                  <span className="featured-icon">🚀</span>
+                  <span className="featured-text">Management Portal</span>
+                </div>
+                <span className="status-pill status-featured">
+                  ⚡ Quick Access
+                </span>
+              </div>
+              <h3 className="dashboard-title">Placement Dashboard</h3>
+              <p className="dashboard-link-text">
+                View and manage placement data requests, company registrations, and feedback forms in the comprehensive management portal.
+              </p>
+              <div className="dashboard-features">
+                <span className="feature-tag">📊 Analytics</span>
+                <span className="feature-tag">🏢 Companies</span>
+                <span className="feature-tag">📝 Forms</span>
+              </div>
+              <div className="card-footer">
+                <span className="view-more highlighted">Open Dashboard →</span>
+              </div>
+            </div>
+
+            {/* Placement Cards */}
             {placements.map(item => (
               <div 
                 key={item.id}
@@ -463,21 +494,6 @@ const AlumniDashboard = ({ onOpenPlacementDashboard }) => {
                 </div>
               </div>
             ))}
-
-            <div 
-              className="glass-card dashboard-link-card"
-              onClick={onOpenPlacementDashboard}
-            >
-              <div className="card-header">
-                <h3>Placement Dashboard</h3>
-              </div>
-              <p className="dashboard-link-text">
-                View and manage placement data requests, company registrations and feedback forms.
-              </p>
-              <div className="card-footer">
-                <span className="view-more">Go to Dashboard →</span>
-              </div>
-            </div>
           </div>
         )}
       </main>

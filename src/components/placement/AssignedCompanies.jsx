@@ -33,6 +33,22 @@ const AssignedCompaniesDashboard = () => {
       companyId: 'c892',
       status: 'Pending',
       feedback: ''
+    },
+    {
+      id: 5,
+      name: 'InnovateLabs',
+      role: 'Mobile App Developer',
+      companyId: 'd7a1',
+      status: 'In Progress',
+      feedback: 'Technical interview scheduled for next week'
+    },
+    {
+      id: 6,
+      name: 'FutureTech Inc.',
+      role: 'Data Scientist',
+      companyId: 'e4b2',
+      status: 'Not applicable',
+      feedback: 'Role requirements did not match skill set'
     }
   ]);
 
@@ -85,8 +101,7 @@ const AssignedCompaniesDashboard = () => {
     <div style={{
       minHeight: '100vh',
       padding: '40px 20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      background: 'linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 50%, #e6e9ff 100%)'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
       {/* Header */}
       <div style={{
@@ -396,7 +411,7 @@ const AssignedCompaniesDashboard = () => {
         fontSize: '12px',
         color: '#9ca3af'
       }}>
-        Designed with ❤️ by Alumni Network
+        
       </div>
     </div>
   );

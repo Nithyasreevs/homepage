@@ -67,8 +67,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
     <div style={{
       minHeight: '100vh',
       padding: '20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      background: 'linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 50%, #e6e9ff 100%)'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
       {/* Header */}
       <div style={{
@@ -96,7 +95,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
             👥
           </div>
           <h1 style={{
-            fontSize: '28px',
+            fontSize: 'clamp(22px, 5vw, 28px)',
             fontWeight: '700',
             background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
             WebkitBackgroundClip: 'text',
@@ -109,7 +108,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
           </h1>
           <p style={{
             color: '#6b7280',
-            fontSize: '14px',
+            fontSize: 'clamp(12px, 2.5vw, 14px)',
             margin: 0
           }}>
             Admin Dashboard - Review & Manage Applications
@@ -145,181 +144,194 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
         )}
       </div>
 
-      {/* Cards Container - Responsive Grid */}
+      {/* Table Container */}
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 500px), 1fr))',
-        gap: '25px',
-        alignItems: 'stretch'
+        background: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(20px)',
+        borderRadius: '20px',
+        border: '1px solid rgba(139, 92, 246, 0.15)',
+        boxShadow: '0 10px 30px rgba(139, 92, 246, 0.15)',
+        overflow: 'hidden'
       }}>
-        {jobRequests.map((request) => (
-          <div
-            key={request.id}
-            onClick={() => handleReview(request)}
-            style={{
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(20px)',
-              borderRadius: '20px',
-              border: '1px solid rgba(139, 92, 246, 0.15)',
-              boxShadow: '0 10px 30px rgba(139, 92, 246, 0.15)',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px)';
-              e.currentTarget.style.boxShadow = '0 20px 40px rgba(139, 92, 246, 0.25)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(139, 92, 246, 0.15)';
-            }}
-          >
-            <div style={{ padding: '25px', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              {/* Header with Name and Status */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: '20px',
-                gap: '10px'
+        {/* Desktop Table View */}
+        <div style={{ 
+          overflowX: 'auto'
+        }}>
+          <table style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            minWidth: '800px'
+          }}>
+            <thead>
+              <tr style={{
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                color: 'white'
               }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  flex: 1
-                }}>
-                  <span style={{ fontSize: '24px' }}>👤</span>
-                  <h3 style={{
-                    fontSize: '22px',
-                    fontWeight: '700',
-                    color: '#1f2937',
-                    margin: 0
-                  }}>
-                    {request.name}
-                  </h3>
-                </div>
-                <span style={{
-                  padding: '6px 12px',
-                  borderRadius: '20px',
-                  background: getStatusColor(request.status),
-                  color: 'white',
-                  fontSize: '11px',
+                <th style={{
+                  padding: '18px 20px',
+                  textAlign: 'left',
+                  fontSize: '14px',
                   fontWeight: '700',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  whiteSpace: 'nowrap'
+                  letterSpacing: '0.5px'
                 }}>
-                  {request.status}
-                </span>
-              </div>
-
-              {/* Skillset */}
-              <div style={{
-                background: 'rgba(139, 92, 246, 0.05)',
-                border: '1px solid rgba(139, 92, 246, 0.1)',
-                borderRadius: '12px',
-                padding: '16px',
-                marginBottom: '15px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}>
-                <span style={{ fontSize: '20px' }}>💼</span>
-                <span style={{
-                  fontSize: '17px',
+                  Name
+                </th>
+                <th style={{
+                  padding: '18px 20px',
+                  textAlign: 'left',
+                  fontSize: '14px',
                   fontWeight: '700',
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
                 }}>
-                  {request.skillset}
-                </span>
-              </div>
-
-              {/* Stats Grid */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '12px',
-                marginBottom: '15px',
-                flex: '1'
-              }}>
-                <div style={{
-                  background: 'rgba(139, 92, 246, 0.05)',
-                  border: '1px solid rgba(139, 92, 246, 0.1)',
-                  borderRadius: '12px',
-                  padding: '12px'
+                  Skillset
+                </th>
+                <th style={{
+                  padding: '18px 20px',
+                  textAlign: 'left',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
                 }}>
-                  <div style={{
-                    fontSize: '11px',
-                    color: '#6b7280',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    marginBottom: '4px'
-                  }}>
-                    Experience
-                  </div>
-                  <div style={{
-                    fontSize: '16px',
+                  Experience
+                </th>
+                <th style={{
+                  padding: '18px 20px',
+                  textAlign: 'left',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}>
+                  Role
+                </th>
+                <th style={{
+                  padding: '18px 20px',
+                  textAlign: 'center',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}>
+                  Status
+                </th>
+                <th style={{
+                  padding: '18px 20px',
+                  textAlign: 'center',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}>
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {jobRequests.map((request, index) => (
+                <tr key={request.id} style={{
+                  borderBottom: '1px solid rgba(139, 92, 246, 0.1)',
+                  background: index % 2 === 0 ? 'rgba(255, 255, 255, 0.5)' : 'rgba(139, 92, 246, 0.02)',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(139, 92, 246, 0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = index % 2 === 0 ? 'rgba(255, 255, 255, 0.5)' : 'rgba(139, 92, 246, 0.02)';
+                }}>
+                  <td style={{
+                    padding: '18px 20px',
+                    fontSize: '15px',
                     color: '#1f2937',
-                    fontWeight: '700'
+                    fontWeight: '600'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '20px' }}>👤</span>
+                      {request.name}
+                    </div>
+                  </td>
+                  <td style={{
+                    padding: '18px 20px',
+                    fontSize: '14px',
+                    color: '#374151',
+                    fontWeight: '500'
+                  }}>
+                    {request.skillset}
+                  </td>
+                  <td style={{
+                    padding: '18px 20px',
+                    fontSize: '14px',
+                    color: '#374151',
+                    fontWeight: '600'
                   }}>
                     {request.experience}
-                  </div>
-                </div>
-
-                <div style={{
-                  background: 'rgba(139, 92, 246, 0.05)',
-                  border: '1px solid rgba(139, 92, 246, 0.1)',
-                  borderRadius: '12px',
-                  padding: '12px'
-                }}>
-                  <div style={{
-                    fontSize: '11px',
-                    color: '#6b7280',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    marginBottom: '4px'
-                  }}>
-                    Role
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    color: '#1f2937',
-                    fontWeight: '700',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
+                  </td>
+                  <td style={{
+                    padding: '18px 20px',
+                    fontSize: '13px',
+                    color: '#374151',
+                    fontWeight: '500'
                   }}>
                     {request.preferredRole}
-                  </div>
-                </div>
-              </div>
-
-              {/* Footer */}
-              <div style={{
-                paddingTop: '15px',
-                marginTop: 'auto',
-                borderTop: '1px solid rgba(139, 92, 246, 0.1)',
-                color: '#7c3aed',
-                fontSize: '14px',
-                fontWeight: '600',
-                textAlign: 'right'
-              }}>
-                Review Application →
-              </div>
-            </div>
-          </div>
-        ))}
+                  </td>
+                  <td style={{
+                    padding: '18px 20px',
+                    textAlign: 'center'
+                  }}>
+                    <span style={{
+                      padding: '6px 14px',
+                      borderRadius: '20px',
+                      background: getStatusColor(request.status),
+                      color: 'white',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px',
+                      display: 'inline-block'
+                    }}>
+                      {request.status}
+                    </span>
+                  </td>
+                  <td style={{
+                    padding: '18px 20px',
+                    textAlign: 'center'
+                  }}>
+                    <button
+                      onClick={() => handleReview(request)}
+                      style={{
+                        padding: '8px 20px',
+                        borderRadius: '10px',
+                        background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                        border: 'none',
+                        color: 'white',
+                        fontSize: '13px',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 6px 16px rgba(139, 92, 246, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.3)';
+                      }}
+                    >
+                      Review →
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Details Modal */}
@@ -338,7 +350,8 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 1000,
-            padding: '20px'
+            padding: '20px',
+            overflowY: 'auto'
           }}
         >
           <div
@@ -352,12 +365,13 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
               maxHeight: '90vh',
               overflowY: 'auto',
               border: '1px solid rgba(139, 92, 246, 0.2)',
-              boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)'
+              boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)',
+              margin: 'auto'
             }}
           >
             {/* Modal Header */}
             <div style={{
-              padding: '25px',
+              padding: '20px 25px',
               borderBottom: '1px solid rgba(139, 92, 246, 0.1)',
               display: 'flex',
               justifyContent: 'space-between',
@@ -366,13 +380,15 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
               top: 0,
               background: 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(20px)',
-              zIndex: 10
+              zIndex: 10,
+              gap: '15px'
             }}>
               <h2 style={{
-                fontSize: '22px',
+                fontSize: 'clamp(18px, 4vw, 22px)',
                 fontWeight: '800',
                 color: '#1f2937',
-                margin: 0
+                margin: 0,
+                wordBreak: 'break-word'
               }}>
                 {selectedRequest.name}
               </h2>
@@ -381,6 +397,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
                 style={{
                   width: '40px',
                   height: '40px',
+                  minWidth: '40px',
                   borderRadius: '50%',
                   background: 'rgba(139, 92, 246, 0.1)',
                   border: '1px solid rgba(139, 92, 246, 0.2)',
@@ -409,299 +426,179 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
               </button>
             </div>
 
-            {/* Modal Body */}
+            {/* Modal Body - Table Format */}
             <div style={{ padding: '25px' }}>
-              {/* Contact Info */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '15px',
-                marginBottom: '15px'
+              <table style={{
+                width: '100%',
+                borderCollapse: 'collapse'
               }}>
-                <div style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '1px solid rgba(139, 92, 246, 0.15)',
-                  borderRadius: '16px',
-                  padding: '18px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '18px' }}>📧</span>
-                    <span style={{
-                      fontSize: '11px',
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
                       color: '#6b7280',
-                      fontWeight: '600',
+                      fontWeight: '700',
                       textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
+                      width: '40%'
                     }}>
-                      Email
-                    </span>
-                  </div>
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#1f2937',
-                    fontWeight: '600',
-                    wordBreak: 'break-word'
-                  }}>
-                    {selectedRequest.email}
-                  </div>
-                </div>
-
-                <div style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '1px solid rgba(139, 92, 246, 0.15)',
-                  borderRadius: '16px',
-                  padding: '18px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '18px' }}>📱</span>
-                    <span style={{
-                      fontSize: '11px',
+                      📧 Email
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600',
+                      wordBreak: 'break-word'
+                    }}>
+                      {selectedRequest.email}
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
                       color: '#6b7280',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
                     }}>
-                      Phone
-                    </span>
-                  </div>
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#1f2937',
-                    fontWeight: '600'
-                  }}>
-                    {selectedRequest.phone}
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Details */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '15px',
-                marginBottom: '15px'
-              }}>
-                <div style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '1px solid rgba(139, 92, 246, 0.15)',
-                  borderRadius: '16px',
-                  padding: '18px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '18px' }}>📍</span>
-                    <span style={{
-                      fontSize: '11px',
+                      📱 Phone
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600'
+                    }}>
+                      {selectedRequest.phone}
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
                       color: '#6b7280',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
                     }}>
-                      Location
-                    </span>
-                  </div>
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#1f2937',
-                    fontWeight: '600'
-                  }}>
-                    {selectedRequest.location}
-                  </div>
-                </div>
-
-                <div style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '1px solid rgba(139, 92, 246, 0.15)',
-                  borderRadius: '16px',
-                  padding: '18px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '18px' }}>💰</span>
-                    <span style={{
-                      fontSize: '11px',
+                      📍 Location
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600'
+                    }}>
+                      {selectedRequest.location}
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
                       color: '#6b7280',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
                     }}>
-                      Expected Salary
-                    </span>
-                  </div>
-                  <div style={{
-                    fontSize: '15px',
-                    fontWeight: '700',
-                    background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                  }}>
-                    {selectedRequest.expectedSalary}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '15px',
-                marginBottom: '15px'
-              }}>
-                <div style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '1px solid rgba(139, 92, 246, 0.15)',
-                  borderRadius: '16px',
-                  padding: '18px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '18px' }}>⏱️</span>
-                    <span style={{
-                      fontSize: '11px',
+                      💼 Skillset
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600'
+                    }}>
+                      {selectedRequest.skillset}
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
                       color: '#6b7280',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
                     }}>
-                      Experience
-                    </span>
-                  </div>
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#1f2937',
-                    fontWeight: '600'
-                  }}>
-                    {selectedRequest.experience}
-                  </div>
-                </div>
-
-                <div style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '1px solid rgba(139, 92, 246, 0.15)',
-                  borderRadius: '16px',
-                  padding: '18px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '18px' }}>🗓️</span>
-                    <span style={{
-                      fontSize: '11px',
+                      ⏱️ Experience
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600'
+                    }}>
+                      {selectedRequest.experience}
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
                       color: '#6b7280',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
                     }}>
-                      Availability
-                    </span>
-                  </div>
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#1f2937',
-                    fontWeight: '600'
-                  }}>
-                    {selectedRequest.availability}
-                  </div>
-                </div>
-              </div>
-
-              {/* Full Width Fields */}
-              <div style={{
-                background: 'rgba(255, 255, 255, 0.9)',
-                border: '1px solid rgba(139, 92, 246, 0.15)',
-                borderRadius: '16px',
-                padding: '18px',
-                marginBottom: '15px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  marginBottom: '8px'
-                }}>
-                  <span style={{ fontSize: '18px' }}>💼</span>
-                  <span style={{
-                    fontSize: '11px',
-                    color: '#6b7280',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px'
-                  }}>
-                    Skillset
-                  </span>
-                </div>
-                <div style={{
-                  fontSize: '13px',
-                  color: '#1f2937',
-                  fontWeight: '600'
-                }}>
-                  {selectedRequest.skillset}
-                </div>
-              </div>
-
-              <div style={{
-                background: 'rgba(255, 255, 255, 0.9)',
-                border: '1px solid rgba(139, 92, 246, 0.15)',
-                borderRadius: '16px',
-                padding: '18px',
-                marginBottom: '25px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  marginBottom: '8px'
-                }}>
-                  <span style={{ fontSize: '18px' }}>🎯</span>
-                  <span style={{
-                    fontSize: '11px',
-                    color: '#6b7280',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px'
-                  }}>
-                    Preferred Role
-                  </span>
-                </div>
-                <div style={{
-                  fontSize: '13px',
-                  color: '#1f2937',
-                  fontWeight: '600'
-                }}>
-                  {selectedRequest.preferredRole}
-                </div>
-              </div>
+                      🎯 Preferred Role
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600'
+                    }}>
+                      {selectedRequest.preferredRole}
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(139, 92, 246, 0.1)' }}>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
+                      color: '#6b7280',
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
+                    }}>
+                      💰 Expected Salary
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '16px',
+                      fontWeight: '700',
+                      background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text'
+                    }}>
+                      {selectedRequest.expectedSalary}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '12px',
+                      color: '#6b7280',
+                      fontWeight: '700',
+                      textTransform: 'uppercase'
+                    }}>
+                      🗓️ Availability
+                    </td>
+                    <td style={{
+                      padding: '15px 10px',
+                      fontSize: '14px',
+                      color: '#1f2937',
+                      fontWeight: '600'
+                    }}>
+                      {selectedRequest.availability}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               {/* Action Buttons */}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-                gap: '15px'
+                gap: '15px',
+                marginTop: '25px'
               }}>
                 <button
                   onClick={() => handleAction('approved')}
@@ -711,7 +608,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
                     border: 'none',
                     background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                     color: 'white',
-                    fontSize: '15px',
+                    fontSize: 'clamp(13px, 2.5vw, 15px)',
                     fontWeight: '700',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
@@ -736,7 +633,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
                     border: 'none',
                     background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
                     color: 'white',
-                    fontSize: '15px',
+                    fontSize: 'clamp(13px, 2.5vw, 15px)',
                     fontWeight: '700',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
@@ -766,7 +663,7 @@ const AlumniJobRequestsAdmin = ({ onBackToDashboard }) => {
         fontSize: '12px',
         color: '#9ca3af'
       }}>
-        Designed with ❤️ by Alumni Network
+       
       </div>
     </div>
   );

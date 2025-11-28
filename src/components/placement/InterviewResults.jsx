@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InterviewResultsPage = () => {
+const InterviewResults = () => {
   const candidateInfo = {
     name: 'Nithyasree VS',
     email: '2312128@nec.edu.in',
@@ -74,8 +74,7 @@ const InterviewResultsPage = () => {
     <div style={{
       minHeight: '100vh',
       padding: '20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      background: 'linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 50%, #e6e9ff 100%)'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -477,11 +476,11 @@ const InterviewResultsPage = () => {
           fontSize: '12px',
           color: '#9ca3af'
         }}>
-          Designed with ❤️ by Alumni Network
+         
         </div>
       </div>
     </div>
   );
 };
 
-export default InterviewResultsPage;
+export default InterviewResults;

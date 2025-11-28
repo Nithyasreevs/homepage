@@ -763,3 +763,90 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* Featured Dashboard Card Styles */
+.dashboard-link-card.featured-card {
+  border: 2px solid rgba(100, 108, 255, 0.3);
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.1), rgba(100, 108, 255, 0.05));
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-link-card.featured-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #646cff, #a855f7, #646cff);
+}
+
+.featured-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #646cff;
+}
+
+.featured-icon {
+  font-size: 1rem;
+}
+
+.featured-text {
+  background: linear-gradient(135deg, #646cff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.status-featured {
+  background: rgba(100, 108, 255, 0.2) !important;
+  color: #646cff !important;
+  border: 1px solid rgba(100, 108, 255, 0.3) !important;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem 0 0.75rem 0;
+  background: linear-gradient(135deg, #646cff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dashboard-link-text {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.dashboard-features {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.feature-tag {
+  background: rgba(100, 108, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  color: rgba(100, 108, 255, 0.9);
+  border: 1px solid rgba(100, 108, 255, 0.2);
+}
+
+.view-more.highlighted {
+  color: #646cff;
+  font-weight: 600;
+}
+
+/* Hover effects for featured card */
+.dashboard-link-card.featured-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(100, 108, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(100, 108, 255, 0.2);
+}

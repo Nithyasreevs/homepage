@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import PlacementDataRequestForm from './placement/PlacementDataRequestForm';
-import CompanyRegistrationForm from './placement/CompanyRegistrationForm';
-import RequesterFeedbackForm from './placement/RequesterFeedbackForm';
-import PlacementFeedbackForm from './placement/PlacementFeedbackForm';
+import { Search, Filter, TrendingUp, Building2, Award, Users, ChevronLeft, X, Check, ArrowLeft } from 'lucide-react';
+import './PlacementDashboard.css';
+
+// Import all placement components from the placement folder
 import AdminDashboard from './placement/AdminDashboard';
 import AssignedCompanies from './placement/AssignedCompanies';
+import CompanyRegistrationForm from './placement/CompanyRegistrationForm';
 import InterviewResults from './placement/InterviewResults';
+import PlacementDataRequestForm from './placement/PlacementDataRequestForm';
+import PlacementFeedbackForm from './placement/PlacementFeedbackForm';
+import RequesterFeedbackForm from './placement/RequesterFeedbackForm';
 
 const PlacementDashboard = ({ onBackToHome }) => {
   const [view, setView] = useState('dashboard');
@@ -16,17 +20,32 @@ const PlacementDashboard = ({ onBackToHome }) => {
   const [filteredApplications, setFilteredApplications] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
 
-  // Mock analytics data with more applications
+  // Mock analytics data
   useEffect(() => {
     const mockAnalyticsData = {
       overview: {
-        total: 156,
-        pending: 42,
-        completed: 87,
-        rejected: 27,
-        inProgress: 18,
-        successRate: 68
+        total: 856,
+        pending: 142,
+        completed: 487,
+        rejected: 127,
+        inProgress: 100,
+        successRate: 72
       },
+      yearWiseData: [
+        { year: '2020', applications: 145, placements: 98 },
+        { year: '2021', applications: 167, placements: 115 },
+        { year: '2022', applications: 189, placements: 138 },
+        { year: '2023', applications: 201, placements: 152 },
+        { year: '2024', applications: 154, placements: 110 }
+      ],
+      topRecruiters: [
+        { name: 'Google', placements: 45, avgPackage: '48 LPA', logo: '🔍' },
+        { name: 'Microsoft', placements: 38, avgPackage: '42 LPA', logo: '💻' },
+        { name: 'Amazon', placements: 42, avgPackage: '45 LPA', logo: '📦' },
+        { name: 'Meta', placements: 28, avgPackage: '46 LPA', logo: '📘' },
+        { name: 'Apple', placements: 25, avgPackage: '50 LPA', logo: '🍎' },
+        { name: 'Netflix', placements: 18, avgPackage: '52 LPA', logo: '🎬' }
+      ],
       applications: [
         { id: 1, name: 'John Doe', company: 'Google', status: 'completed', date: '2024-01-15', role: 'Software Engineer', ctc: '45 LPA' },
         { id: 2, name: 'Jane Smith', company: 'Microsoft', status: 'pending', date: '2024-01-16', role: 'Product Manager', ctc: '38 LPA' },
@@ -44,12 +63,11 @@ const PlacementDashboard = ({ onBackToHome }) => {
     setFilteredApplications(mockAnalyticsData.applications);
   }, []);
 
-  // Filter applications based on search and filters
+  // Filter applications
   useEffect(() => {
     if (analyticsData) {
       let filtered = analyticsData.applications;
 
-      // Search filter
       if (searchTerm) {
         filtered = filtered.filter(app => 
           app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -59,12 +77,10 @@ const PlacementDashboard = ({ onBackToHome }) => {
         );
       }
 
-      // Status filter
       if (statusFilter !== 'all') {
         filtered = filtered.filter(app => app.status === statusFilter);
       }
 
-      // Date filter (simple implementation)
       if (dateFilter !== 'all') {
         const today = new Date();
         const filterDate = new Date();
@@ -100,16 +116,6 @@ const PlacementDashboard = ({ onBackToHome }) => {
     }
   };
 
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case 'completed': return '✅';
-      case 'pending': return '⏳';
-      case 'rejected': return '❌';
-      case 'inProgress': return '🔄';
-      default: return '📄';
-    }
-  };
-
   const clearFilters = () => {
     setSearchTerm('');
     setStatusFilter('all');
@@ -117,616 +123,209 @@ const PlacementDashboard = ({ onBackToHome }) => {
     setShowFilters(false);
   };
 
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-
-  const styles = {
-    dashboardWrapper: {
-      minHeight: '100vh',
-      width: '100%',
-      position: 'relative',
-      background: 'linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 50%, #e6e9ff 100%)',
-      overflowX: 'hidden'
-    },
-    animatedBg: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      overflow: 'hidden',
-      zIndex: 0
-    },
-    orb: {
-      position: 'absolute',
-      borderRadius: '50%',
-      filter: 'blur(80px)',
-      opacity: 0.4,
-      animation: 'float 20s infinite ease-in-out'
-    },
-    orb1: {
-      width: '300px',
-      height: '300px',
-      background: 'radial-gradient(circle, #8b5cf6 0%, #a855f7 100%)',
-      top: '-150px',
-      left: '-150px'
-    },
-    orb2: {
-      width: '250px',
-      height: '250px',
-      background: 'radial-gradient(circle, #c4b5fd 0%, #a78bfa 100%)',
-      top: '50%',
-      right: '-125px',
-      animationDelay: '7s'
-    },
-    orb3: {
-      width: '200px',
-      height: '200px',
-      background: 'radial-gradient(circle, #ddd6fe 0%, #c4b5fd 100%)',
-      bottom: '-100px',
-      left: '20%',
-      animationDelay: '14s'
-    },
-    contentSection: {
-      position: 'relative',
-      zIndex: 10,
-      padding: '0 16px 32px',
-      width: '100%',
-      maxWidth: '100%',
-      boxSizing: 'border-box'
-    },
-    placementDashboard: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      minHeight: '80vh',
-      justifyContent: 'flex-start',
-      padding: '1.5rem 0',
-      width: '100%'
-    },
-    placementContent: {
-      width: '100%',
-      maxWidth: '100%',
-      margin: '0 auto',
-      padding: '0',
-      boxSizing: 'border-box'
-    },
-    dashboardHeader: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      textAlign: 'center',
-      marginBottom: '2rem',
-      position: 'relative',
-      width: '100%',
-      padding: '0 8px'
-    },
-    headerContent: {
-      maxWidth: '100%',
-      margin: '0 auto',
-      width: '100%'
-    },
-    title: {
-      fontSize: '1.75rem',
-      fontWeight: '800',
-      background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text',
-      marginBottom: '0.5rem',
-      letterSpacing: '-0.5px',
-      lineHeight: '1.2',
-      wordWrap: 'break-word'
-    },
-    subtitle: {
-      fontSize: '0.9rem',
-      color: '#6b7280',
-      marginBottom: 0,
-      fontWeight: 400,
-      padding: '0 12px',
-      lineHeight: '1.4'
-    },
-    backBtn: {
-      padding: '10px 16px',
-      borderRadius: '12px',
-      background: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
-      color: '#7c3aed',
-      fontWeight: '600',
-      fontSize: '0.85rem',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)',
-      marginTop: '1rem',
-      display: 'inline-block',
-      width: 'auto'
-    },
-    // Analytics Cards Styles
-    analyticsSection: {
-      width: '100%',
-      marginBottom: '2rem',
-      padding: '0 8px'
-    },
-    analyticsGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: '1rem',
-      marginBottom: '1.5rem',
-      width: '100%'
-    },
-    analyticsCard: {
-      background: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(20px)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '16px',
-      padding: '1.25rem 1rem',
-      transition: 'all 0.3s ease',
-      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
-      textAlign: 'center',
-      minHeight: '100px'
-    },
-    analyticsValue: {
-      fontSize: '1.75rem',
-      fontWeight: '800',
-      margin: '0.5rem 0',
-      background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text',
-      lineHeight: '1.2'
-    },
-    analyticsLabel: {
-      fontSize: '0.75rem',
-      color: '#6b7280',
-      fontWeight: '600',
-      textTransform: 'uppercase',
-      letterSpacing: '0.5px',
-      lineHeight: '1.2'
-    },
-    // Search and Filter Section - MOBILE OPTIMIZED
-    searchFilterSection: {
-      background: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(20px)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '16px',
-      padding: '1.25rem',
-      marginBottom: '1.5rem',
-      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
-      width: '100%',
-      boxSizing: 'border-box'
-    },
-    searchContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-      width: '100%'
-    },
-    searchInputContainer: {
-      position: 'relative',
-      width: '100%'
-    },
-    searchInput: {
-      width: '100%',
-      padding: '14px 16px 14px 48px',
-      borderRadius: '12px',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
-      fontSize: '1rem',
-      background: 'rgba(255, 255, 255, 0.8)',
-      transition: 'all 0.3s ease',
-      boxSizing: 'border-box',
-      height: '52px'
-    },
-    searchIcon: {
-      position: 'absolute',
-      left: '16px',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      color: '#9ca3af',
-      fontSize: '1.2rem'
-    },
-    filterToggleBtn: {
-      padding: '12px 16px',
-      borderRadius: '10px',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
-      background: 'rgba(139, 92, 246, 0.05)',
-      color: '#7c3aed',
-      fontSize: '0.9rem',
-      fontWeight: '600',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '8px',
-      width: '100%'
-    },
-    filtersContainer: {
-      display: showFilters ? 'flex' : 'none',
-      flexDirection: 'column',
-      gap: '1rem',
-      padding: '1rem 0 0 0',
-      borderTop: '1px solid rgba(139, 92, 246, 0.1)'
-    },
-    filterRow: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-      alignItems: 'stretch'
-    },
-    filterGroup: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.5rem',
-      width: '100%'
-    },
-    filterLabel: {
-      fontSize: '0.8rem',
-      fontWeight: '600',
-      color: '#374151',
-      marginBottom: '0.25rem'
-    },
-    filterSelect: {
-      padding: '12px 16px',
-      borderRadius: '10px',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
-      fontSize: '0.9rem',
-      background: 'rgba(255, 255, 255, 0.8)',
-      cursor: 'pointer',
-      width: '100%',
-      boxSizing: 'border-box',
-      height: '48px'
-    },
-    actionButtons: {
-      display: 'flex',
-      gap: '0.75rem',
-      width: '100%'
-    },
-    clearFiltersBtn: {
-      padding: '12px 16px',
-      borderRadius: '10px',
-      border: '1px solid rgba(239, 68, 68, 0.2)',
-      background: 'rgba(239, 68, 68, 0.1)',
-      color: '#ef4444',
-      fontSize: '0.9rem',
-      fontWeight: '600',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      whiteSpace: 'nowrap',
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '6px'
-    },
-    applyFiltersBtn: {
-      padding: '12px 16px',
-      borderRadius: '10px',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
-      background: 'rgba(139, 92, 246, 0.1)',
-      color: '#7c3aed',
-      fontSize: '0.9rem',
-      fontWeight: '600',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      whiteSpace: 'nowrap',
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '6px'
-    },
-    resultsCount: {
-      fontSize: '0.85rem',
-      color: '#6b7280',
-      fontWeight: '500',
-      marginTop: '1rem',
-      textAlign: 'center',
-      padding: '0.5rem 0',
-      borderTop: '1px solid rgba(139, 92, 246, 0.1)'
-    },
-    // Applications Table
-    applicationsSection: {
-      marginBottom: '2rem',
-      width: '100%',
-      padding: '0 8px'
-    },
-    sectionTitle: {
-      fontSize: '1.25rem',
-      fontWeight: '700',
-      color: '#1f2937',
-      marginBottom: '1rem',
-      textAlign: 'center'
-    },
-    applicationsTable: {
-      background: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(20px)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '16px',
-      overflow: 'hidden',
-      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
-      marginBottom: '1.5rem',
-      width: '100%',
-      overflowX: 'auto'
-    },
-    tableContainer: {
-      minWidth: '600px',
-      width: '100%'
-    },
-    tableHeader: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-      padding: '1rem',
-      background: 'rgba(139, 92, 246, 0.05)',
-      borderBottom: '1px solid rgba(139, 92, 246, 0.1)',
-      fontWeight: '600',
-      color: '#374151',
-      fontSize: '0.8rem',
-      minWidth: '600px'
-    },
-    tableRow: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-      padding: '1rem',
-      borderBottom: '1px solid rgba(139, 92, 246, 0.05)',
-      alignItems: 'center',
-      transition: 'all 0.3s ease',
-      minWidth: '600px'
-    },
-    statusBadge: {
-      padding: '4px 8px',
-      borderRadius: '12px',
-      fontSize: '0.7rem',
-      fontWeight: '600',
-      textTransform: 'capitalize',
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '2px',
-      width: 'fit-content'
-    },
-    // Big Quick Actions Cards Styles
-    navigationSection: {
-      width: '100%',
-      padding: '0 8px'
-    },
-    bigCardsGrid: {
-      display: 'grid',
-      gridTemplateColumns: '1fr',
-      gap: '1rem',
-      margin: '0 auto',
-      width: '100%'
-    },
-    bigCard: {
-      background: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(20px)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '16px',
-      padding: '1.5rem 1.25rem',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      boxShadow: '0 8px 30px rgba(139, 92, 246, 0.12)',
-      textAlign: 'left',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      minHeight: '140px',
-      width: '100%',
-      boxSizing: 'border-box'
-    },
-    bigCardHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem',
-      marginBottom: '0.75rem'
-    },
-    bigCardIcon: {
-      width: '50px',
-      height: '50px',
-      borderRadius: '14px',
-      background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: 'white',
-      fontSize: '1.4rem',
-      flexShrink: 0,
-      boxShadow: '0 6px 20px rgba(139, 92, 246, 0.4)'
-    },
-    bigCardTitleWrapper: {
-      flex: 1,
-      minWidth: 0
-    },
-    bigCardTitle: {
-      fontSize: '1.1rem',
-      fontWeight: '700',
-      color: '#1f2937',
-      margin: '0 0 0.25rem 0',
-      lineHeight: 1.3,
-      wordWrap: 'break-word'
-    },
-    bigCardBadge: {
-      display: 'inline-block',
-      background: 'rgba(139, 92, 246, 0.12)',
-      color: '#7c3aed',
-      padding: '0.25rem 0.5rem',
-      borderRadius: '8px',
-      fontSize: '0.7rem',
-      fontWeight: '600',
-      border: '1px solid rgba(139, 92, 246, 0.25)'
-    },
-    bigCardText: {
-      color: '#6b7280',
-      lineHeight: 1.5,
-      fontSize: '0.85rem',
-      margin: 0,
-      wordWrap: 'break-word'
-    },
-    singleFormLayout: {
-      display: 'flex',
-      justifyContent: 'center',
-      width: '100%',
-      maxWidth: '100%',
-      margin: '0 auto',
-      padding: '0 16px',
-      boxSizing: 'border-box'
-    },
-    formBackBtn: {
-      padding: '10px 16px',
-      borderRadius: '12px',
-      border: '1px solid rgba(139, 92, 246, 0.25)',
-      background: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(10px)',
-      color: '#7c3aed',
-      fontSize: '0.85rem',
-      fontWeight: '600',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.1)',
-      marginBottom: '1.5rem',
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '6px',
-      width: 'auto'
+  // Handler functions for quick actions
+  const handleQuickAction = (action) => {
+    switch (action) {
+      case 'placement-data-request':
+        setView('placement-data-request');
+        break;
+      case 'add-company':
+        setView('company-registration');
+        break;
+      case 'assigned-companies':
+        setView('assigned-companies');
+        break;
+      case 'interview-results':
+        setView('interview-results');
+        break;
+      case 'requester-feedback':
+        setView('requester-feedback');
+        break;
+      case 'placement-feedback':
+        setView('placement-feedback');
+        break;
+      case 'admin-dashboard':
+        setView('admin-dashboard');
+        break;
+      default:
+        setView('dashboard');
     }
   };
 
-  const handleBigCardHover = (e, isHovering) => {
-    if (isHovering) {
-      e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-      e.currentTarget.style.boxShadow = '0 12px 30px rgba(139, 92, 246, 0.2)';
-      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.95)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-    } else {
-      e.currentTarget.style.transform = '';
-      e.currentTarget.style.boxShadow = '0 8px 30px rgba(139, 92, 246, 0.12)';
-      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.1)';
-    }
+  const handleBackToDashboard = () => {
+    setView('dashboard');
   };
 
-  const handleBigCardTouch = (e, viewName) => {
-    e.currentTarget.style.transform = 'scale(0.98)';
-    e.currentTarget.style.transition = 'transform 0.1s';
-    setTimeout(() => {
-      e.currentTarget.style.transform = '';
-      e.currentTarget.style.transition = 'all 0.3s ease';
-      setView(viewName);
-    }, 100);
-  };
+  // Simple Back Button Component
+  const SimpleBackButton = () => (
+    <div className="simple-back-container">
+      <button className="simple-back-btn" onClick={handleBackToDashboard}>
+        <ArrowLeft size={18} />
+        Back to Dashboard
+      </button>
+    </div>
+  );
 
-  const handleBackBtnHover = (e, isHovering) => {
-    if (isHovering) {
-      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-      e.currentTarget.style.transform = 'translateX(-2px)';
-      e.currentTarget.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.15)';
-    } else {
-      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-      e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-      e.currentTarget.style.transform = '';
-      e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.1)';
-    }
-  };
+  const DashboardView = () => {
+    const maxApplications = Math.max(...(analyticsData?.yearWiseData.map(d => d.applications) || [200]));
 
-  const handleFilterToggle = () => {
-    setShowFilters(!showFilters);
-  };
-
-  const handleApplyFilters = () => {
-    setShowFilters(false);
-  };
-
-  const DashboardView = () => (
-    <div style={styles.placementDashboard}>
-      <div style={{ width: '100%' }}>
-        <section style={styles.placementContent}>
-          <div style={styles.dashboardHeader}>
-            <div style={styles.headerContent}>
-              <h2 style={styles.title}>Placement Dashboard</h2>
-              <p style={styles.subtitle}>
+    return (
+      <div className="placement-dashboard">
+        <div className="dashboard-content">
+          {/* Header */}
+          <div className="dashboard-header">
+            <div className="header-content">
+              <h2 className="dashboard-title">Placement Dashboard</h2>
+              <p className="dashboard-subtitle">
                 Comprehensive overview of placement activities and analytics
               </p>
             </div>
             {onBackToHome && (
-              <button 
-                style={styles.backBtn}
-                onClick={onBackToHome}
-                onMouseEnter={(e) => handleBackBtnHover(e, true)}
-                onMouseLeave={(e) => handleBackBtnHover(e, false)}
-              >
-                ← Back to Home
+              <button className="back-btn" onClick={onBackToHome}>
+                <ChevronLeft size={18} />
+                Back to Home
               </button>
             )}
           </div>
 
-          {/* Analytics Cards Section - TOP */}
+          {/* Rest of your dashboard content remains exactly the same */}
+          {/* Analytics Cards */}
           {analyticsData && (
-            <div style={styles.analyticsSection}>
-              <div style={styles.analyticsGrid}>
-                <div style={styles.analyticsCard}>
-                  <div style={styles.analyticsLabel}>Total Applications</div>
-                  <div style={styles.analyticsValue}>{analyticsData.overview.total}</div>
+            <div className="analytics-section">
+              <div className="analytics-grid">
+                <div className="analytics-card">
+                  <Users className="analytics-icon" size={24} />
+                  <div className="analytics-value">{analyticsData.overview.total}</div>
+                  <div className="analytics-label">Total Applications</div>
                 </div>
-                <div style={styles.analyticsCard}>
-                  <div style={styles.analyticsLabel}>Pending</div>
-                  <div style={styles.analyticsValue}>{analyticsData.overview.pending}</div>
+                <div className="analytics-card">
+                  <TrendingUp className="analytics-icon" size={24} />
+                  <div className="analytics-value">{analyticsData.overview.pending}</div>
+                  <div className="analytics-label">Pending</div>
                 </div>
-                <div style={styles.analyticsCard}>
-                  <div style={styles.analyticsLabel}>Completed</div>
-                  <div style={styles.analyticsValue}>{analyticsData.overview.completed}</div>
+                <div className="analytics-card">
+                  <Check className="analytics-icon" size={24} />
+                  <div className="analytics-value">{analyticsData.overview.completed}</div>
+                  <div className="analytics-label">Completed</div>
                 </div>
-                <div style={styles.analyticsCard}>
-                  <div style={styles.analyticsLabel}>Rejected</div>
-                  <div style={styles.analyticsValue}>{analyticsData.overview.rejected}</div>
+                <div className="analytics-card">
+                  <X className="analytics-icon" size={24} />
+                  <div className="analytics-value">{analyticsData.overview.rejected}</div>
+                  <div className="analytics-label">Rejected</div>
                 </div>
-                <div style={styles.analyticsCard}>
-                  <div style={styles.analyticsLabel}>In Progress</div>
-                  <div style={styles.analyticsValue}>{analyticsData.overview.inProgress}</div>
+                <div className="analytics-card">
+                  <TrendingUp className="analytics-icon" size={24} />
+                  <div className="analytics-value">{analyticsData.overview.inProgress}</div>
+                  <div className="analytics-label">In Progress</div>
                 </div>
-                <div style={styles.analyticsCard}>
-                  <div style={styles.analyticsLabel}>Success Rate</div>
-                  <div style={styles.analyticsValue}>{analyticsData.overview.successRate}%</div>
+                <div className="analytics-card">
+                  <Award className="analytics-icon" size={24} />
+                  <div className="analytics-value">{analyticsData.overview.successRate}%</div>
+                  <div className="analytics-label">Success Rate</div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Search and Filter Section - MOBILE OPTIMIZED */}
-          <div style={styles.searchFilterSection}>
-            <div style={styles.searchContainer}>
-              {/* Search Input */}
-              <div style={styles.searchInputContainer}>
-                <div style={styles.searchIcon}>🔍</div>
+          {/* Year-wise Applications Bar Graph */}
+          {analyticsData && (
+            <div className="yearwise-section">
+              <h3 className="section-title">
+                <TrendingUp size={20} />
+                Year-wise Student Applications
+              </h3>
+              <div className="yearwise-chart-card">
+                <div className="chart-container">
+                  {analyticsData.yearWiseData.map((yearData, index) => (
+                    <div key={yearData.year} className="bar-group">
+                      <div className="bar-wrapper">
+                        <div className="bar-label-top">{yearData.applications}</div>
+                        <div className="bar-container">
+                          <div 
+                            className="bar applications-bar"
+                            style={{
+                              height: `${(yearData.applications / maxApplications) * 100}%`,
+                              animationDelay: `${index * 0.1}s`
+                            }}
+                          >
+                            <div className="bar-shine"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bar-year">{yearData.year}</div>
+                      <div className="placement-info">
+                        <span className="placement-count">{yearData.placements} placed</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="chart-legend">
+                  <div className="legend-item">
+                    <div className="legend-color applications"></div>
+                    <span>Applications</span>
+                  </div>
+                  <div className="legend-item">
+                    <div className="legend-color placements"></div>
+                    <span>Placements</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Top Recruiters Section */}
+          {analyticsData && (
+            <div className="recruiters-section">
+              <h3 className="section-title">
+                <Building2 size={20} />
+                Top Recruiters
+              </h3>
+              <div className="recruiters-grid">
+                {analyticsData.topRecruiters.map((recruiter, index) => (
+                  <div key={index} className="recruiter-card">
+                    <div className="recruiter-rank">#{index + 1}</div>
+                    <div className="recruiter-logo">{recruiter.logo}</div>
+                    <h4 className="recruiter-name">{recruiter.name}</h4>
+                    <div className="recruiter-stats">
+                      <div className="stat-item">
+                        <Users size={14} />
+                        <span>{recruiter.placements} placements</span>
+                      </div>
+                      <div className="stat-item">
+                        <Award size={14} />
+                        <span>{recruiter.avgPackage}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Search and Filter */}
+          <div className="search-filter-section">
+            <div className="search-container">
+              <div className="search-input-wrapper">
+                <Search className="search-icon" size={18} />
                 <input
                   type="text"
                   placeholder="Search applications..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  style={styles.searchInput}
+                  className="search-input"
                 />
               </div>
 
-              {/* Filter Toggle Button */}
-              <button 
-                style={styles.filterToggleBtn}
-                onClick={handleFilterToggle}
-              >
-                {showFilters ? '▲ Hide Filters' : '▼ Show Filters'}
+              <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
+                <Filter size={18} />
+                {showFilters ? 'Hide Filters' : 'Show Filters'}
               </button>
 
-              {/* Filters Container */}
-              <div style={styles.filtersContainer}>
-                <div style={styles.filterRow}>
-                  <div style={styles.filterGroup}>
-                    <label style={styles.filterLabel}>Status</label>
-                    <select 
-                      value={statusFilter} 
-                      onChange={(e) => setStatusFilter(e.target.value)}
-                      style={styles.filterSelect}
-                    >
+              {showFilters && (
+                <div className="filters-container">
+                  <div className="filter-group">
+                    <label className="filter-label">Status</label>
+                    <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="filter-select">
                       <option value="all">All Status</option>
                       <option value="pending">Pending</option>
                       <option value="inProgress">In Progress</option>
@@ -735,51 +334,40 @@ const PlacementDashboard = ({ onBackToHome }) => {
                     </select>
                   </div>
                   
-                  <div style={styles.filterGroup}>
-                    <label style={styles.filterLabel}>Date Range</label>
-                    <select 
-                      value={dateFilter} 
-                      onChange={(e) => setDateFilter(e.target.value)}
-                      style={styles.filterSelect}
-                    >
+                  <div className="filter-group">
+                    <label className="filter-label">Date Range</label>
+                    <select value={dateFilter} onChange={(e) => setDateFilter(e.target.value)} className="filter-select">
                       <option value="all">All Time</option>
                       <option value="today">Today</option>
                       <option value="week">Last Week</option>
                       <option value="month">Last Month</option>
                     </select>
                   </div>
-                </div>
 
-                {/* Action Buttons */}
-                <div style={styles.actionButtons}>
-                  <button 
-                    onClick={clearFilters}
-                    style={styles.clearFiltersBtn}
-                  >
-                    🗑️ Clear
-                  </button>
-                  <button 
-                    onClick={handleApplyFilters}
-                    style={styles.applyFiltersBtn}
-                  >
-                    ✅ Apply
-                  </button>
+                  <div className="filter-actions">
+                    <button onClick={clearFilters} className="clear-btn">
+                      <X size={16} />
+                      Clear
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Results Count */}
-              <div style={styles.resultsCount}>
-                📊 Showing {filteredApplications.length} of {analyticsData?.applications.length} applications
+              <div className="results-count">
+                Showing {filteredApplications.length} of {analyticsData?.applications.length} applications
               </div>
             </div>
           </div>
 
           {/* Applications Table */}
-          <div style={styles.applicationsSection}>
-            <h3 style={styles.sectionTitle}>Recent Applications</h3>
-            <div style={styles.applicationsTable}>
-              <div style={styles.tableContainer}>
-                <div style={styles.tableHeader}>
+          <div className="applications-section">
+            <h3 className="section-title">
+              <Users size={20} />
+              Recent Applications
+            </h3>
+            <div className="applications-table">
+              <div className="table-container">
+                <div className="table-header">
                   <div>Name</div>
                   <div>Company</div>
                   <div>Role</div>
@@ -788,31 +376,15 @@ const PlacementDashboard = ({ onBackToHome }) => {
                   <div>Status</div>
                 </div>
                 {filteredApplications.map((application) => (
-                  <div 
-                    key={application.id} 
-                    style={{
-                      ...styles.tableRow,
-                      background: application.status === 'completed' ? 'rgba(16, 185, 129, 0.05)' : 
-                                 application.status === 'rejected' ? 'rgba(239, 68, 68, 0.05)' : 
-                                 application.status === 'pending' ? 'rgba(245, 158, 11, 0.05)' : 
-                                 'rgba(59, 130, 246, 0.05)'
-                    }}
-                  >
-                    <div style={{ fontWeight: '600', fontSize: '0.85rem' }}>{application.name}</div>
-                    <div style={{ fontSize: '0.85rem' }}>{application.company}</div>
-                    <div style={{ fontSize: '0.85rem' }}>{application.role}</div>
-                    <div style={{ fontSize: '0.85rem' }}>{application.ctc}</div>
-                    <div style={{ fontSize: '0.85rem' }}>{new Date(application.date).toLocaleDateString()}</div>
-                    <div>
-                      <span 
-                        style={{
-                          ...styles.statusBadge,
-                          background: `rgba(${getStatusColor(application.status).replace('#', '')}, 0.1)`,
-                          color: getStatusColor(application.status),
-                          border: `1px solid ${getStatusColor(application.status)}20`
-                        }}
-                      >
-                        {getStatusIcon(application.status)} {application.status}
+                  <div key={application.id} className="table-row">
+                    <div className="table-cell name-cell">{application.name}</div>
+                    <div className="table-cell">{application.company}</div>
+                    <div className="table-cell">{application.role}</div>
+                    <div className="table-cell ctc-cell">{application.ctc}</div>
+                    <div className="table-cell">{new Date(application.date).toLocaleDateString()}</div>
+                    <div className="table-cell">
+                      <span className={`status-badge status-${application.status}`}>
+                        {application.status}
                       </span>
                     </div>
                   </div>
@@ -821,382 +393,149 @@ const PlacementDashboard = ({ onBackToHome }) => {
             </div>
           </div>
 
-          {/* Big Quick Actions Cards Section - BOTTOM */}
-          <div style={styles.navigationSection}>
-            <h3 style={styles.sectionTitle}>Quick Actions</h3>
-            <div style={styles.bigCardsGrid}>
-              {/* Placement Data Request */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('dataRequest')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'dataRequest')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>📊</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Placement Data Request</h3>
-                    <span style={styles.bigCardBadge}>Admin</span>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
-                  Share preferred locations, companies, skills and returns with detailed requirements.
+          {/* Quick Actions */}
+          <div className="quick-actions-section">
+            <h3 className="section-title">Quick Actions</h3>
+            <div className="quick-actions-grid">
+              <div className="action-card" onClick={() => handleQuickAction('placement-data-request')}>
+                <div className="action-icon">📊</div>
+                <h4 className="action-title">Placement Data Request</h4>
+                <span className="action-badge">Admin</span>
+                <p className="action-text">
+                  Share preferred locations, companies, skills and requirements with detailed information.
                 </p>
               </div>
 
-              {/* Add New Company */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('company')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'company')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>🏢</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Add New Company</h3>
-                    <span style={styles.bigCardBadge}>Register</span>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
+              <div className="action-card" onClick={() => handleQuickAction('add-company')}>
+                <div className="action-icon">🏢</div>
+                <h4 className="action-title">Add New Company</h4>
+                <span className="action-badge">Register</span>
+                <p className="action-text">
                   Register companies, roles, skills required, CTC details and hiring process.
                 </p>
               </div>
 
-              {/* Assigned Companies */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('assignedCompanies')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'assignedCompanies')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>📋</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Assigned Companies</h3>
-                    <span style={styles.bigCardBadge}>View</span>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
+              <div className="action-card" onClick={() => handleQuickAction('assigned-companies')}>
+                <div className="action-icon">📋</div>
+                <h4 className="action-title">Assigned Companies</h4>
+                <span className="action-badge">View</span>
+                <p className="action-text">
                   View and manage companies assigned for placement activities and track progress.
                 </p>
               </div>
 
-              {/* Interview Results */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('interviewResults')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'interviewResults')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>📈</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Interview Results</h3>
-                    <span style={styles.bigCardBadge}>Results</span>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
+              <div className="action-card" onClick={() => handleQuickAction('interview-results')}>
+                <div className="action-icon">📈</div>
+                <h4 className="action-title">Interview Results</h4>
+                <span className="action-badge">Results</span>
+                <p className="action-text">
                   View and manage interview outcomes, candidate selection results and feedback.
                 </p>
               </div>
 
-              {/* Requester Feedback */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('requesterFeedback')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'requesterFeedback')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>💬</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Requester Feedback</h3>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
+              <div className="action-card" onClick={() => handleQuickAction('requester-feedback')}>
+                <div className="action-icon">💬</div>
+                <h4 className="action-title">Requester Feedback</h4>
+                <span className="action-badge">Feedback</span>
+                <p className="action-text">
                   Collect and analyze feedback about the placement data request process and improvements.
                 </p>
               </div>
 
-              {/* Placement Feedback */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('placementFeedback')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'placementFeedback')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>⭐</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Placement Feedback</h3>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
+              <div className="action-card" onClick={() => handleQuickAction('placement-feedback')}>
+                <div className="action-icon">⭐</div>
+                <h4 className="action-title">Placement Feedback</h4>
+                <span className="action-badge">Rating</span>
+                <p className="action-text">
                   Capture detailed feedback on the final placement outcome and student experience.
                 </p>
               </div>
 
-              {/* Admin Dashboard */}
-              <div
-                style={styles.bigCard}
-                onClick={() => setView('adminDashboard')}
-                onMouseEnter={(e) => handleBigCardHover(e, true)}
-                onMouseLeave={(e) => handleBigCardHover(e, false)}
-                onTouchStart={(e) => handleBigCardTouch(e, 'adminDashboard')}
-              >
-                <div style={styles.bigCardHeader}>
-                  <div style={styles.bigCardIcon}>⚙️</div>
-                  <div style={styles.bigCardTitleWrapper}>
-                    <h3 style={styles.bigCardTitle}>Admin Dashboard</h3>
-                    <span style={styles.bigCardBadge}>Management</span>
-                  </div>
-                </div>
-                <p style={styles.bigCardText}>
+              <div className="action-card" onClick={() => handleQuickAction('admin-dashboard')}>
+                <div className="action-icon">⚙️</div>
+                <h4 className="action-title">Admin Dashboard</h4>
+                <span className="action-badge">Management</span>
+                <p className="action-text">
                   Comprehensive admin panel to manage all placement activities, data and analytics.
                 </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
-  const FormView = ({ formComponent }) => (
-    <div style={styles.placementDashboard}>
-      <div style={styles.singleFormLayout}>
-        <section style={{ ...styles.placementContent, maxWidth: '100%', padding: 0 }}>
-          <button
-            style={styles.formBackBtn}
-            onClick={() => setView('dashboard')}
-            onMouseEnter={(e) => handleBackBtnHover(e, true)}
-            onMouseLeave={(e) => handleBackBtnHover(e, false)}
-          >
-            ← Back to Dashboard
-          </button>
-          {formComponent}
-        </section>
-      </div>
-    </div>
-  );
+  // Render different views based on current view state
+  const renderCurrentView = () => {
+    switch (view) {
+      case 'dashboard':
+        return <DashboardView />;
+      case 'admin-dashboard':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <AdminDashboard />
+          </div>
+        );
+      case 'assigned-companies':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <AssignedCompanies />
+          </div>
+        );
+      case 'company-registration':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <CompanyRegistrationForm />
+          </div>
+        );
+      case 'interview-results':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <InterviewResults />
+          </div>
+        );
+      case 'placement-data-request':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <PlacementDataRequestForm />
+          </div>
+        );
+      case 'placement-feedback':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <PlacementFeedbackForm />
+          </div>
+        );
+      case 'requester-feedback':
+        return (
+          <div className="component-wrapper">
+            <SimpleBackButton />
+            <RequesterFeedbackForm />
+          </div>
+        );
+      default:
+        return <DashboardView />;
+    }
+  };
 
   return (
-    <div style={styles.dashboardWrapper}>
-      <div style={styles.animatedBg}>
-        <div style={{...styles.orb, ...styles.orb1}}></div>
-        <div style={{...styles.orb, ...styles.orb2}}></div>
-        <div style={{...styles.orb, ...styles.orb3}}></div>
+    <div className="dashboard-wrapper">
+      <div className="animated-bg">
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
       </div>
 
-      <main style={styles.contentSection}>
-        {view === 'dashboard' && <DashboardView />}
-        {view === 'dataRequest' && <FormView formComponent={<PlacementDataRequestForm />} />}
-        {view === 'company' && <FormView formComponent={<CompanyRegistrationForm />} />}
-        {view === 'assignedCompanies' && <FormView formComponent={<AssignedCompanies />} />}
-        {view === 'interviewResults' && <FormView formComponent={<InterviewResults />} />}
-        {view === 'requesterFeedback' && <FormView formComponent={<RequesterFeedbackForm />} />}
-        {view === 'placementFeedback' && <FormView formComponent={<PlacementFeedbackForm />} />}
-        {view === 'adminDashboard' && <FormView formComponent={<AdminDashboard />} />}
+      <main className="content-section">
+        {renderCurrentView()}
       </main>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -30px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-        }
-        
-        /* Mobile First Styles */
-        @media (min-width: 480px) {
-          .content-section {
-            padding: 0 20px 40px;
-          }
-          
-          .analytics-grid {
-            grid-templateColumns: repeat(3, 1fr) !important;
-            gap: 1.25rem !important;
-          }
-          
-          .analytics-card {
-            padding: 1.5rem 1rem !important;
-          }
-          
-          .analytics-value {
-            font-size: 2rem !important;
-          }
-        }
-        
-        @media (min-width: 768px) {
-          .content-section {
-            padding: 0 32px 48px;
-          }
-          
-          .placement-dashboard {
-            padding: 2rem 0;
-          }
-          
-          .dashboard-header {
-            margin-bottom: 2.5rem;
-          }
-          
-          .title {
-            font-size: 2.25rem !important;
-          }
-          
-          .subtitle {
-            font-size: 1rem !important;
-          }
-          
-          .analytics-grid {
-            grid-template-columns: repeat(6, 1fr) !important;
-          }
-          
-          .analytics-card {
-            padding: 1.75rem 1.25rem !important;
-            min-height: 120px;
-          }
-          
-          .analytics-value {
-            font-size: 2.25rem !important;
-          }
-          
-          .big-cards-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 1.5rem !important;
-          }
-          
-          .big-card {
-            padding: 1.75rem 1.5rem !important;
-            min-height: 160px;
-          }
-          
-          .big-card-title {
-            font-size: 1.3rem !important;
-          }
-          
-          .big-card-text {
-            font-size: 0.9rem !important;
-          }
-          
-          /* Desktop search layout */
-          .search-container {
-            flex-direction: row !important;
-            align-items: end;
-            gap: 1.5rem;
-          }
-          
-          .search-input-container {
-            flex: 2;
-          }
-          
-          .filter-toggle-btn {
-            display: none !important;
-          }
-          
-          .filters-container {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 1.5rem;
-            padding: 0;
-            border-top: none;
-          }
-          
-          .filter-row {
-            flex-direction: row !important;
-            gap: 1.5rem;
-          }
-          
-          .filter-group {
-            min-width: 150px;
-          }
-          
-          .action-buttons {
-            flex-direction: column;
-            gap: 0.5rem;
-            min-width: 120px;
-          }
-        }
-        
-        @media (min-width: 1024px) {
-          .content-section {
-            padding: 0 40px 60px;
-          }
-          
-          .placement-dashboard {
-            padding: 2.5rem 0;
-          }
-          
-          .title {
-            font-size: 2.5rem !important;
-          }
-          
-          .analytics-card {
-            padding: 2rem 1.5rem !important;
-          }
-          
-          .analytics-value {
-            font-size: 2.5rem !important;
-          }
-          
-          .big-cards-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 2rem !important;
-          }
-          
-          .big-card {
-            padding: 2rem 1.75rem !important;
-            min-height: 180px;
-          }
-          
-          .big-card-title {
-            font-size: 1.4rem !important;
-          }
-          
-          .big-card-text {
-            font-size: 1rem !important;
-          }
-        }
-        
-        @media (min-width: 1200px) {
-          .placement-content {
-            max-width: 1200px !important;
-          }
-        }
-        
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-          .big-card {
-            min-height: 150px;
-          }
-          
-          .big-card-header {
-            gap: 0.75rem;
-          }
-          
-          .big-card-icon {
-            width: 45px;
-            height: 45px;
-            font-size: 1.2rem;
-          }
-          
-          .search-input, .filter-select {
-            font-size: 16px; /* Prevents zoom on iOS */
-          }
-        }
-      `}</style>
     </div>
   );
 };

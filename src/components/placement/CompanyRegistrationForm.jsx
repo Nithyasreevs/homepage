@@ -32,7 +32,7 @@ const CompanyRegistrationForm = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      padding: '40px 20px',
+      padding: '20px 15px',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
       <div style={{
@@ -40,57 +40,83 @@ const CompanyRegistrationForm = () => {
         margin: '0 auto',
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(20px)',
-        borderRadius: '24px',
-        padding: '40px',
+        borderRadius: '20px',
+        padding: '25px 20px',
         border: '1px solid rgba(139, 92, 246, 0.15)',
-        boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)'
+        boxShadow: '0 20px 60px rgba(139, 92, 246, 0.25)',
+        '@media (min-width: 768px)': {
+          borderRadius: '24px',
+          padding: '40px'
+        }
       }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '25px' }}>
           <div style={{
-            width: '70px',
-            height: '70px',
+            width: '60px',
+            height: '60px',
             background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-            borderRadius: '15px',
+            borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 20px',
-            fontSize: '35px',
-            boxShadow: '0 10px 28px rgba(139, 92, 246, 0.32)'
+            margin: '0 auto 15px',
+            fontSize: '28px',
+            boxShadow: '0 10px 28px rgba(139, 92, 246, 0.32)',
+            '@media (min-width: 768px)': {
+              width: '70px',
+              height: '70px',
+              borderRadius: '15px',
+              fontSize: '35px'
+            }
           }}>
             🏢
           </div>
           <h2 style={{
-            fontSize: '28px',
+            fontSize: '22px',
             fontWeight: '700',
             background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            marginBottom: '8px'
+            marginBottom: '6px',
+            lineHeight: '1.3',
+            '@media (min-width: 768px)': {
+              fontSize: '28px'
+            }
           }}>
             Add New Company
           </h2>
           <p style={{
             color: '#6b7280',
-            fontSize: '14px'
+            fontSize: '13px',
+            lineHeight: '1.4',
+            '@media (min-width: 768px)': {
+              fontSize: '14px'
+            }
           }}>
             Register a new company and job role for campus placements
           </p>
         </div>
 
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '15px',
+            marginBottom: '18px',
+            '@media (min-width: 768px)': {
+              gridTemplateColumns: '1fr 1fr'
+            }
+          }}>
             <div>
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 <span style={{ color: '#8b5cf6' }}>🏢</span>
                 Company Name <span style={{ color: '#ef4444' }}>*</span>
@@ -103,9 +129,9 @@ const CompanyRegistrationForm = () => {
                 placeholder="Enter company name"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '12px 14px',
                   border: '1px solid #d1d5db',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
@@ -119,11 +145,11 @@ const CompanyRegistrationForm = () => {
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 <span style={{ color: '#8b5cf6' }}>💼</span>
                 Job Role <span style={{ color: '#ef4444' }}>*</span>
@@ -136,9 +162,9 @@ const CompanyRegistrationForm = () => {
                 placeholder="Enter job role"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '12px 14px',
                   border: '1px solid #d1d5db',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
@@ -150,15 +176,15 @@ const CompanyRegistrationForm = () => {
             </div>
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '6px',
               fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
               <span style={{ color: '#8b5cf6' }}>⚡</span>
               Required Skills <span style={{ color: '#ef4444' }}>*</span>
@@ -171,9 +197,9 @@ const CompanyRegistrationForm = () => {
               placeholder="e.g., React, Node.js, TypeScript"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '12px 14px',
                 border: '1px solid #d1d5db',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 fontSize: '14px',
                 outline: 'none',
                 transition: 'border-color 0.2s',
@@ -184,16 +210,24 @@ const CompanyRegistrationForm = () => {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '15px',
+            marginBottom: '18px',
+            '@media (min-width: 768px)': {
+              gridTemplateColumns: '1fr 1fr'
+            }
+          }}>
             <div>
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 <span style={{ color: '#8b5cf6' }}>🌐</span>
                 Company URL <span style={{ color: '#ef4444' }}>*</span>
@@ -206,9 +240,9 @@ const CompanyRegistrationForm = () => {
                 placeholder="https://company.com"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '12px 14px',
                   border: '1px solid #d1d5db',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
@@ -222,11 +256,11 @@ const CompanyRegistrationForm = () => {
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 <span style={{ color: '#8b5cf6' }}>💰</span>
                 CTC Offered <span style={{ color: '#ef4444' }}>*</span>
@@ -239,9 +273,9 @@ const CompanyRegistrationForm = () => {
                 placeholder="e.g., 8 LPA"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '12px 14px',
                   border: '1px solid #d1d5db',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
@@ -253,16 +287,24 @@ const CompanyRegistrationForm = () => {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '15px',
+            marginBottom: '18px',
+            '@media (min-width: 768px)': {
+              gridTemplateColumns: '1fr 1fr'
+            }
+          }}>
             <div>
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 <span style={{ color: '#8b5cf6' }}>📍</span>
                 Location <span style={{ color: '#ef4444' }}>*</span>
@@ -275,9 +317,9 @@ const CompanyRegistrationForm = () => {
                 placeholder="Job location"
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '12px 14px',
                   border: '1px solid #d1d5db',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
@@ -291,11 +333,11 @@ const CompanyRegistrationForm = () => {
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
                 color: '#374151',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 <span style={{ color: '#8b5cf6' }}>📅</span>
                 Application Deadline <span style={{ color: '#ef4444' }}>*</span>
@@ -307,9 +349,9 @@ const CompanyRegistrationForm = () => {
                 onChange={handleChange}
                 style={{
                   width: '100%',
-                  padding: '12px 15px',
+                  padding: '12px 14px',
                   border: '1px solid #d1d5db',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
                   transition: 'border-color 0.2s',
@@ -321,15 +363,15 @@ const CompanyRegistrationForm = () => {
             </div>
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '6px',
               fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
               <span style={{ color: '#8b5cf6' }}>🔗</span>
               Application Link <span style={{ color: '#ef4444' }}>*</span>
@@ -342,9 +384,9 @@ const CompanyRegistrationForm = () => {
               placeholder="Apply / registration link"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '12px 14px',
                 border: '1px solid #d1d5db',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 fontSize: '14px',
                 outline: 'none',
                 transition: 'border-color 0.2s',
@@ -355,15 +397,15 @@ const CompanyRegistrationForm = () => {
             />
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '6px',
               fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
               <span style={{ color: '#8b5cf6' }}>📝</span>
               Job Description <span style={{ color: '#ef4444' }}>*</span>
@@ -376,30 +418,31 @@ const CompanyRegistrationForm = () => {
               rows="4"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '12px 14px',
                 border: '1px solid #d1d5db',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 fontSize: '14px',
                 outline: 'none',
                 resize: 'vertical',
                 fontFamily: 'inherit',
                 transition: 'border-color 0.2s',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                minHeight: '100px'
               }}
               onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
               onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
             />
           </div>
 
-          <div style={{ marginBottom: '25px' }}>
+          <div style={{ marginBottom: '20px' }}>
             <label style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '6px',
               fontSize: '14px',
               fontWeight: '600',
               color: '#374151',
-              marginBottom: '8px'
+              marginBottom: '6px'
             }}>
               <span style={{ color: '#8b5cf6' }}>🖼️</span>
               Company Poster
@@ -410,19 +453,22 @@ const CompanyRegistrationForm = () => {
               accept="image/*,.pdf"
               style={{
                 width: '100%',
-                padding: '12px 15px',
+                padding: '12px 14px',
                 border: '1px solid #d1d5db',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 fontSize: '14px',
                 cursor: 'pointer',
                 boxSizing: 'border-box'
               }}
             />
             <p style={{
-              fontSize: '12px',
+              fontSize: '11px',
               color: '#6b7280',
               marginTop: '6px',
-              marginLeft: '4px'
+              marginLeft: '4px',
+              '@media (min-width: 768px)': {
+                fontSize: '12px'
+              }
             }}>
               Drag and drop or click to upload poster / brochure
             </p>
@@ -436,7 +482,7 @@ const CompanyRegistrationForm = () => {
               background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
               color: 'white',
               border: 'none',
-              borderRadius: '10px',
+              borderRadius: '8px',
               fontSize: '16px',
               fontWeight: '600',
               cursor: 'pointer',
@@ -450,6 +496,14 @@ const CompanyRegistrationForm = () => {
               e.target.style.transform = 'translateY(0)';
               e.target.style.boxShadow = 'none';
             }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 10px 25px rgba(139, 92, 246, 0.4)';
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
           >
             Add Company
           </button>
@@ -457,11 +511,15 @@ const CompanyRegistrationForm = () => {
 
         <div style={{
           textAlign: 'center',
-          marginTop: '25px',
-          fontSize: '12px',
-          color: '#9ca3af'
+          marginTop: '20px',
+          fontSize: '11px',
+          color: '#9ca3af',
+          '@media (min-width: 768px)': {
+            fontSize: '12px',
+            marginTop: '25px'
+          }
         }}>
-          Designed with ❤️ by Alumni Network
+        
         </div>
       </div>
     </div>
